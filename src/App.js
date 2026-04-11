@@ -1,0 +1,113 @@
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import { CartProvider } from './context/CartContext';
+import { WishlistProvider } from './context/WishlistContext';
+import ProtectedRoute from './components/ProtectedRoute';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+
+import LoginPage           from './pages/LoginPage';
+import HomePage            from './pages/HomePage';
+import WelcomePage         from './pages/WelcomePage';
+import ShopPage            from './pages/ShopPage';
+import ProductDetailPage   from './pages/ProductDetailPage';
+import CartPage            from './pages/CartPage';
+import CheckoutPage        from './pages/CheckoutPage';
+import OrderConfirmationPage from './pages/OrderConfirmationPage';
+import ProfilePage         from './pages/ProfilePage';
+import WishlistPage        from './pages/WishlistPage';
+import AboutPage           from './pages/AboutPage';
+import AislePage           from './pages/AislePage';
+
+function Layout({ children }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <Navbar />
+      <main style={{ flex: 1, paddingTop: 'var(--nav-height)' }}>
+        {children}
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AuthProvider>
+        <CartProvider>
+          <WishlistProvider>
+            <Routes>
+              {/* Public */}
+              <Route path="/login" element={<LoginPage />} />
+
+              {/* Welcome/splash screen — default landing page */}
+              <Route path="/" element={
+                <ProtectedRoute>
+                  <WelcomePage />
+                </ProtectedRoute>
+              } />
+
+              {/* Main homepage with shop/aisles/cart buttons */}
+              <Route path="/home" element={
+                <ProtectedRoute>
+                  <HomePage />
+                </ProtectedRoute>
+              } />
+              <Route path="/shop" element={
+                <ProtectedRoute>
+                  <ShopPage />
+                </ProtectedRoute>
+              } />
+              <Route path="/aisles" element={
+                <ProtectedRoute>
+                  <AislePage />
+                </ProtectedRoute>
+              } />
+              <Route path="/product/:id" element={
+                <ProtectedRoute>
+                  <Layout><ProductDetailPage /></Layout>
+                </ProtectedRoute>
+              } />
+              <Route path="/cart" element={
+                <ProtectedRoute>
+                  <CartPage />
+                </ProtectedRoute>
+              } />
+              <Route path="/checkout" element={
+                <ProtectedRoute>
+                  <CheckoutPage />
+                </ProtectedRoute>
+              } />
+              <Route path="/order-confirmation" element={
+                <ProtectedRoute>
+                  <Layout><OrderConfirmationPage /></Layout>
+                </ProtectedRoute>
+              } />
+              <Route path="/profile" element={
+                <ProtectedRoute>
+                  <Layout><ProfilePage /></Layout>
+                </ProtectedRoute>
+              } />
+              <Route path="/wishlist" element={
+                <ProtectedRoute>
+                  <Layout><WishlistPage /></Layout>
+                </ProtectedRoute>
+              } />
+              <Route path="/about" element={
+                <ProtectedRoute>
+                  <Layout><AboutPage /></Layout>
+                </ProtectedRoute>
+              } />
+
+              {/* Fallback — redirect unknown routes to welcome */}
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </WishlistProvider>
+        </CartProvider>
+      </AuthProvider>
+    </BrowserRouter>
+  );
+}
+
+export default App;
