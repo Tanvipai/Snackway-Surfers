@@ -7,7 +7,6 @@ export default function HomePage() {
   const [phase2Ready, setPhase2Ready] = useState(false);
   const [showGraffiti, setShowGraffiti] = useState(false);
 
-  // Start the staggered UI fade-in after logo animation
   useEffect(() => {
     const timer = setTimeout(() => setPhase2Ready(true), 1500);
     return () => clearTimeout(timer);
@@ -20,7 +19,6 @@ export default function HomePage() {
       animation: 'fadeInMenu 1.2s ease-in-out forwards',
       position: 'relative'
     }}>
-      {/* Base Scenery Layer */}
       <img
         src="/img/subway surfers assets/homepage2.png" alt="Base Scenery"
         style={{
@@ -29,7 +27,6 @@ export default function HomePage() {
         }}
       />
 
-      {/* CENTRAL LOGO ANIMATION */}
       <img
         src="/img/subway surfers assets/logo.png"
         alt="Subway Surfers Logo"
@@ -44,7 +41,6 @@ export default function HomePage() {
         }}
       />
 
-      {/* STAGGERED UI ELEMENTS */}
       <div style={{
         position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
         opacity: phase2Ready ? 1 : 0,
@@ -53,7 +49,6 @@ export default function HomePage() {
         zIndex: 5
       }}>
 
-        {/* Top Center: Time to Deliver */}
         <AssetButton
           src="/img/subway surfers assets/time.png"
           onClick={() => { }}
@@ -61,7 +56,6 @@ export default function HomePage() {
           animation="pulseSubtle 4s infinite alternate"
         />
 
-        {/* Left Sidebar: Aisles, Cart, My Surfer */}
         <div style={{
           position: 'absolute', top: '30%', left: '3%',
           display: 'flex', flexDirection: 'column', gap: '3vh', alignItems: 'center', zIndex: 10
@@ -86,7 +80,6 @@ export default function HomePage() {
           />
         </div>
 
-        {/* Right Sidebar: About Us & Graffiti Wall */}
         <div style={{
           position: 'absolute', top: '30%', right: '2%',
           display: 'flex', flexDirection: 'column', gap: '3vh', alignItems: 'center', zIndex: 10
@@ -105,7 +98,6 @@ export default function HomePage() {
           />
         </div>
 
-        {/* Center Main Feature: Character in Cart */}
         <AssetButton
           src="/img/subway surfers assets/char.png"
           onClick={() => navigate('/profile')}
@@ -119,7 +111,6 @@ export default function HomePage() {
           hoverScale={1.05}
         />
 
-        {/* Bottom Center: Primary Action "TAP TO SHOP" */}
         <AssetButton
           src="/img/subway surfers assets/tap to shop.png"
           onClick={() => navigate('/shop')}
@@ -133,8 +124,6 @@ export default function HomePage() {
           hoverScale={1.1}
         />
 
-
-
       </div>
 
       {showGraffiti && <GraffitiWall onBack={() => setShowGraffiti(false)} />}
@@ -145,9 +134,7 @@ export default function HomePage() {
           100% { opacity: 1; filter: brightness(1); }
         }
         @keyframes logoGlideUp {
-          /* Start huge and dead center */
           0% { top: 40%; transform: translate(-50%, -50%) scale(1.5); }
-          /* Glide up to top center and scale down slightly */
           100% { top: 2%; transform: translate(-50%, 0) scale(1); }
         }
         @keyframes pulseTap {
@@ -171,7 +158,6 @@ export default function HomePage() {
   );
 }
 
-// Reusable component for placing PNG UI elements
 function AssetButton({ src, onClick, style, hoverScale = 1.1, animation, label }) {
   const [hover, setHover] = useState(false);
 
@@ -229,7 +215,6 @@ function AssetButton({ src, onClick, style, hoverScale = 1.1, animation, label }
     );
   }
 
-  // Without label
   return (
     <img
       src={src}

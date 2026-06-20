@@ -12,11 +12,11 @@ function Stars({ rating }) {
 }
 
 const BADGE_STYLES = {
-  Sale:    { bg: '#1c1c1a', color: '#fff' },
+  Sale: { bg: '#1c1c1a', color: '#fff' },
   Popular: { bg: '#c8821a', color: '#fff' },
   Organic: { bg: '#3a5a3a', color: '#fff' },
   Artisan: { bg: '#4a3a6a', color: '#fff' },
-  New:     { bg: '#1a3a5a', color: '#fff' },
+  New: { bg: '#1a3a5a', color: '#fff' },
 };
 
 export default function ProductCard({ product }) {
@@ -55,7 +55,6 @@ export default function ProductCard({ product }) {
       onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--ink-muted)'; e.currentTarget.style.boxShadow = 'var(--shadow-md)'; }}
       onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.boxShadow = 'none'; }}
       >
-        {/* Image */}
         <div style={{ position: 'relative', height: 180, overflow: 'hidden', background: 'var(--paper-dark)' }}>
           <img
             src={product.image}
@@ -66,7 +65,6 @@ export default function ProductCard({ product }) {
             onError={e => { e.target.style.display = 'none'; e.target.parentElement.style.fontSize = '60px'; e.target.parentElement.style.display = 'flex'; e.target.parentElement.style.alignItems = 'center'; e.target.parentElement.style.justifyContent = 'center'; e.target.parentElement.innerHTML = product.emoji; }}
           />
 
-          {/* Badge */}
           {product.badge && bs && (
             <span style={{
               position: 'absolute', top: 10, left: 10,
@@ -76,7 +74,6 @@ export default function ProductCard({ product }) {
             }}>{product.badge.toUpperCase()}</span>
           )}
 
-          {/* Discount */}
           {discount && (
             <span style={{
               position: 'absolute', top: 10, right: product.badge ? 10 : 10,
@@ -86,7 +83,6 @@ export default function ProductCard({ product }) {
             }}>-{discount}%</span>
           )}
 
-          {/* Out of stock */}
           {!product.inStock && (
             <div style={{
               position: 'absolute', inset: 0,
@@ -99,7 +95,6 @@ export default function ProductCard({ product }) {
             </div>
           )}
 
-          {/* Wishlist */}
           <button
             onClick={e => { e.preventDefault(); e.stopPropagation(); toggleWishlist(product); }}
             style={{
@@ -120,7 +115,6 @@ export default function ProductCard({ product }) {
           </button>
         </div>
 
-        {/* Content */}
         <div style={{ padding: '14px 16px 16px', flex: 1, display: 'flex', flexDirection: 'column' }}>
           <p style={{ fontSize: '0.68rem', color: 'var(--ink-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: 4 }}>
             {product.category}

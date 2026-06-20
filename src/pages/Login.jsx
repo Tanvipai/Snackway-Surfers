@@ -256,7 +256,7 @@ const CHARACTERS = [
   { id: "fresh", img: "/img/login/fresh.png", name: "Fresh", tag: "TAGGER" },
 ];
 
-export default function EasyGroceriesLogin() {
+export default function Login() {
   const navigate = useNavigate();
   const { login, signup } = useAuth();
 
@@ -298,7 +298,6 @@ export default function EasyGroceriesLogin() {
     setShutterOpen(true);
     setTimeout(() => {
       setAnimDone(true);
-      // Navigate to WelcomePage (/) after animation completes
       navigate("/");
     }, 1900);
   }
@@ -341,7 +340,6 @@ export default function EasyGroceriesLogin() {
   return (
     <div onClick={handleShutterClick} style={{ position: "relative", width: "100vw", minHeight: "100vh", overflow: "auto", fontFamily: "'Nunito',sans-serif", background: "#c0c0c0" }}>
 
-      {/* ── Shutter ── */}
       <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
 
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg,#e8e8e8 0%,#d0d0d0 100%)" }} />
@@ -394,13 +392,11 @@ export default function EasyGroceriesLogin() {
         }} />
       </div>
 
-      {/* ── Login / Signup card ── */}
       {!animDone && !showChars && (
         <div style={{ position: "absolute", inset: 0, zIndex: 10, display: "flex", alignItems: "center", justifyContent: "center" }}>
           <div className="eg-scene" style={{ width: 340, height: isSignup ? 500 : 340 }}>
             <div className={`eg-inner${isSignup ? " flipped" : ""}`}>
 
-              {/* LOGIN */}
               <div className={`eg-face${lShake ? " shake" : ""}`}>
                 <div className="eg-brand">Snackway Surfers</div>
                 <input className="eg-input" type="text" placeholder="UserName"
@@ -417,7 +413,6 @@ export default function EasyGroceriesLogin() {
                 </div>
               </div>
 
-              {/* SIGNUP */}
               <div className={`eg-face back${sShake ? " shake" : ""}`}>
                 <div className="eg-brand">Snackway Surfers</div>
                 <input className="eg-input" type="text" placeholder="UserName *"
@@ -444,7 +439,6 @@ export default function EasyGroceriesLogin() {
         </div>
       )}
 
-      {/* ── Character selection ── */}
       {showChars && !animDone && (
         <div className="cs-overlay">
           <div className="cs-title">

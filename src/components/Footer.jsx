@@ -6,7 +6,6 @@ export default function Footer() {
       <div className="page-container">
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))', gap: 36, marginBottom: 44 }}>
 
-          {/* Brand */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
               <div style={{ width: 34, height: 34, background: 'rgba(255,255,255,0.1)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>🛒</div>
@@ -20,7 +19,6 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h4 style={{ color: 'white', fontWeight: 600, marginBottom: 14, fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase' }}>Quick Links</h4>
             <ul style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
@@ -35,7 +33,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Categories */}
           <div>
             <h4 style={{ color: 'white', fontWeight: 600, marginBottom: 14, fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase' }}>Categories</h4>
             <ul style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
@@ -50,7 +47,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
             <h4 style={{ color: 'white', fontWeight: 600, marginBottom: 14, fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase' }}>Contact</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>

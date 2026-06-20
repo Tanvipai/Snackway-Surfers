@@ -2,7 +2,6 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { FaHome, FaShoppingCart, FaUser } from 'react-icons/fa';
 
-/* ── Confetti colour palette ──────────────────────────── */
 const CONFETTI_COLORS = ['#FFD600', '#FF4081', '#00E676', '#2979FF', '#FF6D00', '#AA00FF', '#FFD700', '#00BCD4'];
 
 export default function AislePage() {
@@ -23,7 +22,6 @@ export default function AislePage() {
       position: 'relative',
     }}>
 
-      {/* ── Animations & Fonts ──────────────────────────── */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap');
 
@@ -58,7 +56,6 @@ export default function AislePage() {
           transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
           filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)) contrast(1.05) saturate(1.1);
         }
-        /* Lustre effect on hover */
         .aisle-image:hover {
           filter: drop-shadow(0 15px 30px rgba(255,255,255,0.4)) contrast(1.1) saturate(1.2) brightness(1.15);
           transform: scale(1.03) !important;
@@ -66,14 +63,12 @@ export default function AislePage() {
         }
       `}</style>
 
-      {/* ── Warm orange overlay ───────────────────────── */}
       <div style={{
         position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none',
         background: 'linear-gradient(to bottom, rgba(180,80,20,0.3) 0%, rgba(60,30,10,0.45) 100%)',
         animation: 'tunnelPulse 6s ease-in-out infinite',
       }} />
 
-      {/* ── Confetti particles ───────────────────────── */}
       {Array.from({ length: 28 }).map((_, i) => (
         <div key={i} style={{
           position: 'absolute',
@@ -88,7 +83,6 @@ export default function AislePage() {
         }} />
       ))}
 
-      {/* ── Flash overlay on load ─────────────────────── */}
       <div style={{
         position: 'fixed', inset: 0, zIndex: 200,
         background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.9), rgba(120,60,20,0.5))',
@@ -96,7 +90,6 @@ export default function AislePage() {
         pointerEvents: 'none',
       }} />
 
-      {/* ══════════ TOP BAR ══════════════════════════════ */}
       <div style={{
         position: 'relative', zIndex: 10,
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
@@ -105,7 +98,6 @@ export default function AislePage() {
         borderBottom: '2px solid rgba(255,255,255,0.25)',
         animation: loaded ? 'aisleSlideDown 0.6s ease-out both' : 'none',
       }}>
-        {/* Timer pill */}
         <div style={{
           display: 'flex', alignItems: 'center', gap: 6,
           background: 'rgba(0,0,0,0.28)', borderRadius: 22,
@@ -122,7 +114,6 @@ export default function AislePage() {
           </div>
         </div>
 
-        {/* Logo */}
         <img
           src="/img/subway surfers assets/logo.png" alt="Logo"
           style={{
@@ -133,7 +124,6 @@ export default function AislePage() {
           }}
         />
 
-        {/* Total / Items pill */}
         <div style={{
           display: 'flex', alignItems: 'center', gap: 8,
           background: 'rgba(255,255,255,0.22)', borderRadius: 22,
@@ -146,7 +136,6 @@ export default function AislePage() {
         </div>
       </div>
 
-      {/* ══════════ TITLE ═══════════════════════════════ */}
       <div style={{
         textAlign: 'center', position: 'relative', zIndex: 2,
         padding: '16px 0 0',
@@ -170,7 +159,6 @@ export default function AislePage() {
         </p>
       </div>
 
-      {/* ══════════ CATEGORY IMAGES (Exactly like reference) ═══════════════════════ */}
       <div style={{
         flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center',
         position: 'relative', zIndex: 2,
@@ -222,7 +210,6 @@ export default function AislePage() {
         </div>
       </div>
 
-      {/* ── Character ──────────────────────────────── */}
       <div style={{
         position: 'fixed', bottom: 65, right: -15, zIndex: 20,
         pointerEvents: 'none',
@@ -234,7 +221,6 @@ export default function AislePage() {
           onError={e => { e.target.src = '/img/subway surfers assets/char.png'; }} />
       </div>
 
-      {/* ══════════ BOTTOM NAV BAR ═══════════════════════ */}
       <div style={{
         position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 100,
         height: 60, background: 'rgba(255,255,255,0.55)',
@@ -251,7 +237,6 @@ export default function AislePage() {
   );
 }
 
-/* ── Nav styles ────────────────────────────────────────── */
 const navItem = {
   display: 'flex', flexDirection: 'column', alignItems: 'center',
   textDecoration: 'none', color: '#8A9EAE', gap: 3,

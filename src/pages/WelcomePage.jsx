@@ -8,14 +8,11 @@ export default function WelcomePage() {
   const [dialogueIndex, setDialogueIndex] = useState(-1);
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
 
-  // Order: Jake first, Fresh second, Tricky third
-  // Each entry maps to the corresponding character dialogue image
   const dialogueImages = [
     {
       name: 'jake',
       src: '/img/subway surfers assets/jake.png',
       alt: 'Jake dialogue',
-      // Position near Jake (right side of the welcome image)
       style: {
         position: 'absolute',
         top: '1%',
@@ -32,7 +29,6 @@ export default function WelcomePage() {
       name: 'fresh',
       src: '/img/subway surfers assets/fresh.png',
       alt: 'Fresh dialogue',
-      // Position near Fresh (left side of the welcome image)
       style: {
         position: 'absolute',
         top: '5%',
@@ -49,7 +45,6 @@ export default function WelcomePage() {
       name: 'tricky',
       src: '/img/subway surfers assets/tricky.png',
       alt: 'Tricky dialogue',
-      // Position near Tricky (center-left area)
       style: {
         position: 'absolute',
         top: '8%',
@@ -65,7 +60,6 @@ export default function WelcomePage() {
     }
   ];
 
-  // Sequence the dialogue images on the splash screen
   useEffect(() => {
     const timers = [];
     timers.push(setTimeout(() => setDialogueIndex(0), 500));
@@ -90,7 +84,6 @@ export default function WelcomePage() {
     }
   };
 
-  // Calculate slight parallax offset for the background
   const parallaxX = (mousePos.x - 50) * -0.02;
   const parallaxY = (mousePos.y - 50) * -0.02;
 
@@ -107,7 +100,6 @@ export default function WelcomePage() {
         position: 'relative'
       }}
     >
-      {/* Splash Screen Image with subtle zoom + minimal Parallax effect */}
       <div style={{
         position: 'absolute',
         top: '-2%', left: '-2%', width: '104%', height: '104%',
@@ -125,7 +117,6 @@ export default function WelcomePage() {
         />
       </div>
 
-      {/* Minimal soft glow tracking the cursor */}
       <div style={{
         position: 'absolute',
         top: 0, left: 0, width: '100%', height: '100%',
@@ -136,7 +127,6 @@ export default function WelcomePage() {
         transition: 'background 0.1s ease'
       }} />
 
-      {/* Character Dialogue Images – fade in sequentially */}
       {dialogueImages.map((dialogue, index) => (
         <img
           key={dialogue.name}
@@ -147,7 +137,6 @@ export default function WelcomePage() {
         />
       ))}
 
-      {/* Tap to continue image Overlay */}
       <div style={{
         position: 'absolute', bottom: '15%', left: '0', width: '100%',
         display: 'flex', flexDirection: 'column', alignItems: 'center',
@@ -196,7 +185,6 @@ export default function WelcomePage() {
           100% { opacity: 1; transform: translateY(-3px) scale(1.02); }
         }
 
-        /* Dialogue images – fade in */
         .dialogue-img {
           opacity: 0;
           transition: opacity 1.2s ease-in-out;
@@ -205,8 +193,6 @@ export default function WelcomePage() {
         .dialogue-img.dialogue-visible {
           opacity: 1;
         }
-
-
       `}</style>
     </div>
   );

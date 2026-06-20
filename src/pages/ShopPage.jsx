@@ -4,7 +4,6 @@ import { PRODUCTS } from '../data/products';
 import { useCart } from '../context/CartContext';
 import { FaHome, FaShoppingCart, FaUser } from 'react-icons/fa';
 
-/* ── Category config ──────────────────────────────────── */
 const AISLES = [
   { id: '', label: 'All' },
   { id: 'dairy', label: 'Dairy' },
@@ -15,7 +14,6 @@ const AISLES = [
   { id: 'beverages', label: 'Beverages' },
 ];
 
-/* ── Card border colours (rotating) ───────────────────── */
 const CARD_BORDERS = [
   'rgba(218, 180, 100, 0.7)',
   'rgba(180, 200, 220, 0.6)',
@@ -51,7 +49,6 @@ export default function ShopPage() {
       position: 'relative',
     }}>
 
-      {/* ── Animations & Fonts ──────────────────────────── */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap');
 
@@ -113,20 +110,17 @@ export default function ShopPage() {
           transform: translateY(-1px);
         }
 
-        /* Scrollbar */
         .product-grid::-webkit-scrollbar { width: 5px; }
         .product-grid::-webkit-scrollbar-track { background: transparent; }
         .product-grid::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
       `}</style>
 
-      {/* ── Dark tint overlay ──────────────────────────── */}
       <div style={{
         position: 'absolute', inset: 0,
         background: 'rgba(10, 25, 50, 0.45)',
         pointerEvents: 'none', zIndex: 0,
       }} />
 
-      {/* ── Flash overlay on load ──────────────────────── */}
       <div style={{
         position: 'fixed', inset: 0, zIndex: 200,
         background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.9), rgba(20,40,80,0.6))',
@@ -134,7 +128,6 @@ export default function ShopPage() {
         pointerEvents: 'none',
       }} />
 
-      {/* ══════════ LOGO AREA ═══════════════════════════ */}
       <div style={{
         position: 'relative', zIndex: 10,
         display: 'flex', justifyContent: 'center', alignItems: 'center',
@@ -142,7 +135,6 @@ export default function ShopPage() {
         minHeight: 70,
         animation: 'shopSlideDown 0.5s 0.3s ease-out both',
       }}>
-        {/* Cart icon – top right */}
         <Link to="/cart" style={{
           position: 'absolute', right: 24, top: 12,
           display: 'flex', alignItems: 'center', gap: 10,
@@ -181,7 +173,6 @@ export default function ShopPage() {
           </span>
         </Link>
 
-        {/* Centre logo */}
         <img
           src="/img/subway surfers assets/logo.png" alt="Logo"
           style={{
@@ -192,7 +183,6 @@ export default function ShopPage() {
         />
       </div>
 
-      {/* ══════════ AISLES HORIZONTAL BAR ═══════════════ */}
       <div style={{
         position: 'relative', zIndex: 10,
         display: 'flex', justifyContent: 'center', alignItems: 'center',
@@ -234,14 +224,12 @@ export default function ShopPage() {
         })}
       </div>
 
-      {/* ══════════ MAIN CONTENT AREA ═══════════════════ */}
       <div style={{
         flex: 1, display: 'flex', position: 'relative', zIndex: 1,
         overflow: 'hidden',
         paddingBottom: 66,
       }}>
 
-        {/* ── Product grid (3 columns) ─────────────────── */}
         <div
           className="product-grid"
           style={{
@@ -278,7 +266,6 @@ export default function ShopPage() {
                   minHeight: 150,
                 }}
               >
-                {/* Image + name row */}
                 <div style={{ display: 'flex', gap: 12, alignItems: 'center', flex: 1 }}>
                   <img
                     src={item.image} alt={item.name}
@@ -320,7 +307,6 @@ export default function ShopPage() {
                   </div>
                 </div>
 
-                {/* Price + ADD row */}
                 <div style={{
                   display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                   marginTop: 10,
@@ -362,7 +348,6 @@ export default function ShopPage() {
         </div>
       </div>
 
-      {/* ══════════ BOTTOM NAV BAR ═════════════════════ */}
       <div style={{
         position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 100,
         height: 62,
@@ -389,7 +374,6 @@ export default function ShopPage() {
   );
 }
 
-/* ── Shared nav link styles ──────────────────────────── */
 const navItem = {
   display: 'flex', flexDirection: 'column', alignItems: 'center',
   textDecoration: 'none', color: 'rgba(255,255,255,0.5)', gap: 4,

@@ -54,7 +54,6 @@ export default function Navbar() {
         maxWidth: 1260, margin: '0 auto', padding: '0 24px',
         height: '100%', display: 'flex', alignItems: 'center', gap: 20,
       }}>
-        {/* Logo */}
         <Link to="/home" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0, marginRight: 4 }}>
           <div style={{
             width: 34, height: 34, background: 'var(--charcoal)', borderRadius: 8,
@@ -70,7 +69,6 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Search */}
         <form onSubmit={handleSearch} style={{ flex: 1, maxWidth: 380 }}>
           <div style={{ position: 'relative' }}>
             <input
@@ -94,7 +92,6 @@ export default function Navbar() {
           </div>
         </form>
 
-        {/* Nav Links */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 2, flexShrink: 0 }} className="nav-desktop">
           {navLinks.map(link => (
             <Link key={link.to} to={link.to} style={{
@@ -110,21 +107,17 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Icons */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0, marginLeft: 'auto' }}>
-          {/* Wishlist */}
           <Link to="/wishlist" style={{ position: 'relative', ...iconBtn }}>
             <span style={{ fontSize: 17, color: 'var(--ink-mid)' }}>♡</span>
             {wishlist.length > 0 && <span style={badgeStyle}>{wishlist.length}</span>}
           </Link>
 
-          {/* Cart */}
           <Link to="/cart" style={{ position: 'relative', ...iconBtn }}>
             <span style={{ fontSize: 17, color: 'var(--ink-mid)' }}>🛒</span>
             {cartCount > 0 && <span style={badgeStyle}>{cartCount}</span>}
           </Link>
 
-          {/* User */}
           {user ? (
             <div style={{ position: 'relative' }}>
               <button onClick={() => setUserDropdown(p => !p)} style={{
