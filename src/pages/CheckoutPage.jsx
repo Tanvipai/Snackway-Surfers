@@ -5,9 +5,9 @@ import { useAuth } from '../context/AuthContext';
 import { FaHome, FaShoppingCart, FaUser, FaLock, FaTruck, FaUndo } from 'react-icons/fa';
 
 const PAYMENT_METHODS = [
-  { id: 'cod',  label: 'Cash on Delivery',   icon: '💵' },
+  { id: 'cod', label: 'Cash on Delivery', icon: '💵' },
   { id: 'card', label: 'Credit / Debit Card', icon: '💳' },
-  { id: 'upi',  label: 'UPI / Net Banking',   icon: '📱' },
+  { id: 'upi', label: 'UPI / Net Banking', icon: '📱' },
 ];
 
 export default function CheckoutPage() {
@@ -29,8 +29,8 @@ export default function CheckoutPage() {
     return () => clearTimeout(t);
   }, []);
 
-  const delivery   = cartTotal >= 30 ? 0 : (cartTotal > 0 ? 4.99 : 0);
-  const discount   = cartTotal > 50 ? +(cartTotal * 0.05).toFixed(2) : 0;
+  const delivery = cartTotal >= 30 ? 0 : (cartTotal > 0 ? 4.99 : 0);
+  const discount = cartTotal > 50 ? +(cartTotal * 0.05).toFixed(2) : 0;
   const finalTotal = +(cartTotal + delivery - discount).toFixed(2);
 
   function set(f, v) { setForm(p => ({ ...p, [f]: v })); setErrors(e => ({ ...e, [f]: '' })); }
@@ -91,8 +91,10 @@ export default function CheckoutPage() {
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           fontSize: 50, border: '2px solid rgba(255,255,255,0.2)',
         }}>🛒</div>
-        <h2 style={{ color: '#fff', fontSize: 24, fontWeight: 800, margin: 0,
-          textShadow: '2px 2px 0 rgba(0,0,0,0.4)' }}>Nothing to checkout</h2>
+        <h2 style={{
+          color: '#fff', fontSize: 24, fontWeight: 800, margin: 0,
+          textShadow: '2px 2px 0 rgba(0,0,0,0.4)'
+        }}>Nothing to checkout</h2>
         <button onClick={() => navigate('/shop')} style={goldBtn}>
           START SHOPPING →
         </button>
@@ -271,7 +273,7 @@ export default function CheckoutPage() {
                           width: '100%', height: '100%', objectFit: 'cover',
                         }} onError={e => {
                           e.target.style.display = 'none';
-                          e.target.parentElement.innerHTML = `<span style="font-size:18px">${item.emoji}</span>`;
+                          e.target.parentElement.innerHTML = `<span style="font-size:18px">₹{item.emoji}</span>`;
                         }} />
                       </div>
                       <div>
@@ -281,7 +283,7 @@ export default function CheckoutPage() {
                     </div>
                     <span style={{
                       fontWeight: 800, fontSize: 13, color: '#FFD700', flexShrink: 0,
-                    }}>${(item.price * item.qty).toFixed(2)}</span>
+                    }}>₹{(item.price * item.qty).toFixed(2)}</span>
                   </div>
                 ))}
               </div>
@@ -290,10 +292,10 @@ export default function CheckoutPage() {
               <div style={{ height: 1, background: 'rgba(255,255,255,0.1)', margin: '14px 0', borderRadius: 1 }} />
 
               {/* Summary rows */}
-              <SRow label="Subtotal" value={`$${cartTotal.toFixed(2)}`} />
-              <SRow label="Delivery" value={delivery === 0 ? 'FREE' : `$${delivery.toFixed(2)}`}
+              <SRow label="Subtotal" value={`₹${cartTotal.toFixed(2)}`} />
+              <SRow label="Delivery" value={delivery === 0 ? 'FREE' : `₹${delivery.toFixed(2)}`}
                 vc={delivery === 0 ? '#4CAF50' : undefined} />
-              {discount > 0 && <SRow label="Discount (5%)" value={`-$${discount}`} vc="#FF6B6B" />}
+              {discount > 0 && <SRow label="Discount (5%)" value={`-₹${discount}`} vc="#FF6B6B" />}
 
               {/* Divider */}
               <div style={{ height: 1, background: 'rgba(255,255,255,0.1)', margin: '14px 0', borderRadius: 1 }} />
@@ -305,9 +307,11 @@ export default function CheckoutPage() {
               }}>
                 <span style={{ fontWeight: 800, fontSize: 16, color: '#fff' }}>Total</span>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <span style={{ fontWeight: 900, fontSize: 24, color: '#FFD700',
-                    textShadow: '0 2px 6px rgba(0,0,0,0.3)' }}>
-                    ${finalTotal.toFixed(2)}
+                  <span style={{
+                    fontWeight: 900, fontSize: 24, color: '#FFD700',
+                    textShadow: '0 2px 6px rgba(0,0,0,0.3)'
+                  }}>
+                    ₹{finalTotal.toFixed(2)}
                   </span>
                   <img src="/img/cart page/coin.png" alt="" style={{ width: 22, height: 22 }} />
                 </div>

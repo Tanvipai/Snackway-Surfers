@@ -206,10 +206,7 @@ export default function WelcomePage() {
           opacity: 1;
         }
 
-        @keyframes bounceTap {
-          0% { transform: translateY(0) scale(1); }
-          100% { transform: translateY(-5px) scale(1.1); }
-        }
+
       `}</style>
     </div>
   );

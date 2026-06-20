@@ -18,18 +18,18 @@ export function AuthProvider({ children }) {
     const stored = users[username.toLowerCase()];
     if (!stored) return { ok: false, error: 'Invalid username or password.' };
     if (stored.password !== password) return { ok: false, error: 'Invalid username or password.' };
-    const u = { username: username.toLowerCase(), email: stored.email || '' };
+    const u = { username: username.toLowerCase(), email: stored.email || '', charId: stored.charId || null };
     setUser(u);
     localStorage.setItem('eg_current_user', JSON.stringify(u));
     return { ok: true };
   }, []);
 
-  const signup = useCallback((username, email, password) => {
+  const signup = useCallback((username, email, password, charId) => {
     const users = getUsers();
     if (users[username.toLowerCase()]) return { ok: false, error: 'Username already taken.' };
-    users[username.toLowerCase()] = { password, email };
+    users[username.toLowerCase()] = { password, email, charId: charId || null };
     localStorage.setItem('eg_users', JSON.stringify(users));
-    const u = { username: username.toLowerCase(), email };
+    const u = { username: username.toLowerCase(), email, charId: charId || null };
     setUser(u);
     localStorage.setItem('eg_current_user', JSON.stringify(u));
     return { ok: true };
@@ -41,7 +41,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, login, signup, logout }}>
+    <AuthContext.Provider value={{ user, login, signup, logout, setUser }}>
       {children}
     </AuthContext.Provider>
   );

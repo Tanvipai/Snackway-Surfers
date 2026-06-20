@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import GraffitiWall from './GraffitiWall';
 
 export default function HomePage() {
   const navigate = useNavigate();
   const [phase2Ready, setPhase2Ready] = useState(false);
+  const [showGraffiti, setShowGraffiti] = useState(false);
 
   // Start the staggered UI fade-in after logo animation
   useEffect(() => {
@@ -59,34 +61,34 @@ export default function HomePage() {
           animation="pulseSubtle 4s infinite alternate"
         />
 
-        {/* Left Sidebar: Delivery, Favorites, List */}
+        {/* Left Sidebar: Aisles, Cart, My Surfer */}
         <div style={{
-          position: 'absolute', top: '22%', left: '2%',
+          position: 'absolute', top: '30%', left: '3%',
           display: 'flex', flexDirection: 'column', gap: '3vh', alignItems: 'center', zIndex: 10
         }}>
           <AssetButton
-            src="/img/subway surfers assets/delivery.png"
-            label="Scheduled Delivery"
-            onClick={() => navigate('/shop')}
-            style={{ position: 'relative', width: '12vw', maxWidth: '85px', animation: 'floatSubtle 2.5s infinite ease-in-out' }}
-          />
-          <AssetButton
-            src="/img/subway surfers assets/favorites.png"
-            label="Favorites"
-            onClick={() => navigate('/wishlist')}
-            style={{ position: 'relative', width: '12vw', maxWidth: '85px', animation: 'floatSubtle 2.8s infinite ease-in-out reverse' }}
-          />
-          <AssetButton
-            src="/img/subway surfers assets/list.png"
-            label="My List/Deals"
+            src="/img/subway surfers assets/aisle button.png"
+            label="Aisles"
             onClick={() => navigate('/aisles')}
-            style={{ position: 'relative', width: '12vw', maxWidth: '85px', animation: 'floatSubtle 3.1s infinite ease-in-out' }}
+            style={{ position: 'relative', width: '25vw', maxWidth: '170px', animation: 'floatSubtle 2.5s infinite ease-in-out' }}
+          />
+          <AssetButton
+            src="/img/subway surfers assets/cart button.png"
+            label="Cart"
+            onClick={() => navigate('/cart')}
+            style={{ position: 'relative', width: '25vw', maxWidth: '170px', animation: 'floatSubtle 2.8s infinite ease-in-out reverse' }}
+          />
+          <AssetButton
+            src="/img/subway surfers assets/profile.png"
+            label="My Surfer"
+            onClick={() => navigate('/profile')}
+            style={{ position: 'relative', width: '25vw', maxWidth: '170px', animation: 'floatSubtle 3.1s infinite ease-in-out' }}
           />
         </div>
 
         {/* Right Sidebar: About Us & Graffiti Wall */}
         <div style={{
-          position: 'absolute', top: '22%', right: '2%',
+          position: 'absolute', top: '30%', right: '2%',
           display: 'flex', flexDirection: 'column', gap: '3vh', alignItems: 'center', zIndex: 10
         }}>
           <AssetButton
@@ -98,7 +100,7 @@ export default function HomePage() {
           <AssetButton
             src="/img/subway surfers assets/grafitti_icon.png"
             label="Graffiti Wall"
-            onClick={() => navigate('/about')}
+            onClick={() => setShowGraffiti(true)}
             style={{ position: 'relative', width: '12vw', maxWidth: '85px', height: '12vw', maxHeight: '85px', objectFit: 'cover', borderRadius: '22%', animation: 'floatSubtle 2.9s infinite ease-in-out' }}
           />
         </div>
@@ -122,8 +124,8 @@ export default function HomePage() {
           src="/img/subway surfers assets/tap to shop.png"
           onClick={() => navigate('/shop')}
           style={{
-            bottom: '15%', left: '50%', transform: 'translateX(-50%)',
-            width: '30vw', maxWidth: '240px',
+            bottom: '13%', left: '50%', transform: 'translateX(-50%)',
+            width: '30vw', maxWidth: '250px',
             animation: 'pulseTap 2s infinite alternate ease-in-out',
             transformOrigin: 'center',
             zIndex: 15
@@ -131,37 +133,11 @@ export default function HomePage() {
           hoverScale={1.1}
         />
 
-        {/* Bottom Navigation Bar */}
-        <div style={{
-          position: 'absolute', bottom: '0', width: '100%', left: '0',
-          display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8vw',
-          padding: '1vh 0',
-          background: 'rgba(0, 0, 0, 0.3)',
-          backdropFilter: 'blur(5px)',
-          borderTop: '1px solid rgba(255,255,255,0.1)',
-          zIndex: 20
-        }}>
-          <AssetButton
-            src="/img/subway surfers assets/aisle button.png"
-            label="Aisles"
-            onClick={() => navigate('/aisles')}
-            style={{ position: 'relative', width: '20vw', maxWidth: '140px', animation: 'floatSubtle 2.5s infinite ease-in-out' }}
-          />
-          <AssetButton
-            src="/img/subway surfers assets/cart button.png"
-            label="Cart"
-            onClick={() => navigate('/cart')}
-            style={{ position: 'relative', width: '20vw', maxWidth: '140px', animation: 'floatSubtle 2.8s infinite ease-in-out reverse' }}
-          />
-          <AssetButton
-            src="/img/subway surfers assets/profile.png"
-            label="My Surfer"
-            onClick={() => navigate('/profile')}
-            style={{ position: 'relative', width: '20vw', maxWidth: '140px', animation: 'floatSubtle 3.1s infinite ease-in-out' }}
-          />
-        </div>
+
 
       </div>
+
+      {showGraffiti && <GraffitiWall onBack={() => setShowGraffiti(false)} />}
 
       <style>{`
         @keyframes fadeInMenu {

@@ -1,18 +1,18 @@
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { PRODUCTS, CATEGORIES } from '../data/products';
+import { PRODUCTS } from '../data/products';
 import { useCart } from '../context/CartContext';
 import { FaHome, FaShoppingCart, FaUser } from 'react-icons/fa';
 
 /* ── Category config ──────────────────────────────────── */
 const AISLES = [
-  { id: '',           label: 'All' },
-  { id: 'dairy',      label: 'Dairy' },
-  { id: 'snacks',     label: 'Snacks' },
-  { id: 'bakery',     label: 'Cereal' },
-  { id: 'fruits',     label: 'Fruits' },
+  { id: '', label: 'All' },
+  { id: 'dairy', label: 'Dairy' },
+  { id: 'snacks', label: 'Snacks' },
+  { id: 'bakery', label: 'Cereal' },
+  { id: 'fruits', label: 'Fruits' },
   { id: 'vegetables', label: 'Veggies' },
-  { id: 'beverages',  label: 'Beverages' },
+  { id: 'beverages', label: 'Beverages' },
 ];
 
 /* ── Card border colours (rotating) ───────────────────── */
@@ -330,7 +330,7 @@ export default function ShopPage() {
                       color: '#FFD700', fontSize: 17, fontWeight: 900,
                       textShadow: '0 1px 4px rgba(0,0,0,0.3)',
                     }}>
-                      ${item.price.toFixed(2)}
+                      ₹{item.price.toFixed(2)}
                     </span>
                     <img
                       src="/img/cart page/coin.png" alt=""

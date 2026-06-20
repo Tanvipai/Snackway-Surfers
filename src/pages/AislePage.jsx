@@ -180,7 +180,6 @@ export default function AislePage() {
           position: 'relative',
           width: 1000,
           height: 520,
-          transform: 'scale(1)', // adjust globally if needed
         }}>
 
           <img

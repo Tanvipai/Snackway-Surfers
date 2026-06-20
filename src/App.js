@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider } from './context/AuthContext.jsx';
 import { CartProvider } from './context/CartContext';
 import { WishlistProvider } from './context/WishlistContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
-import LoginPage           from './pages/LoginPage';
+import Login                from './pages/Login';
 import HomePage            from './pages/HomePage';
 import WelcomePage         from './pages/WelcomePage';
 import ShopPage            from './pages/ShopPage';
@@ -14,7 +14,7 @@ import ProductDetailPage   from './pages/ProductDetailPage';
 import CartPage            from './pages/CartPage';
 import CheckoutPage        from './pages/CheckoutPage';
 import OrderConfirmationPage from './pages/OrderConfirmationPage';
-import ProfilePage         from './pages/ProfilePage';
+import ProfilePage         from './pages/Profile';
 import WishlistPage        from './pages/WishlistPage';
 import AboutPage           from './pages/AboutPage';
 import AislePage           from './pages/AislePage';
@@ -39,7 +39,7 @@ function App() {
           <WishlistProvider>
             <Routes>
               {/* Public */}
-              <Route path="/login" element={<LoginPage />} />
+              <Route path="/login" element={<Login />} />
 
               {/* Welcome/splash screen — default landing page */}
               <Route path="/" element={
@@ -86,7 +86,7 @@ function App() {
               } />
               <Route path="/profile" element={
                 <ProtectedRoute>
-                  <Layout><ProfilePage /></Layout>
+                  <ProfilePage />
                 </ProtectedRoute>
               } />
               <Route path="/wishlist" element={
@@ -96,7 +96,7 @@ function App() {
               } />
               <Route path="/about" element={
                 <ProtectedRoute>
-                  <Layout><AboutPage /></Layout>
+                  <AboutPage />
                 </ProtectedRoute>
               } />
 

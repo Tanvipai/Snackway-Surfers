@@ -1,144 +1,370 @@
-import { Link } from 'react-router-dom';
 
-const TEAM = [
-  { name: 'Sarah Green', role: 'Founder & CEO', emoji: '👩‍💼', bio: 'Former farmer turned entrepreneur, bringing farm-fresh produce to urban tables.' },
-  { name: 'James Roots', role: 'Head of Sourcing', emoji: '👨‍🌾', bio: 'Builds relationships with 50+ local farms to ensure the freshest supply chain.' },
-  { name: 'Mia Fresh', role: 'Delivery Manager', emoji: '👩‍🚀', bio: 'Ensures your order arrives within hours, fresh and perfectly packed.' },
-];
 
-const MILESTONES = [
-  { year: '2020', label: 'Founded', desc: 'Started with 3 farm partners and 50 products.' },
-  { year: '2021', label: 'Growth', desc: 'Expanded to 5 cities and 500+ happy customers.' },
-  { year: '2023', label: 'Online', desc: 'Launched our online store for seamless shopping.' },
-  { year: '2026', label: 'Today', desc: '30+ curated products, delivered fresh daily.' },
-];
+const SnackwaySurfersPage = () => {
+  const styles = {
+    container: {
+      fontFamily: '"Nunito", sans-serif',
+      color: '#ffffff',
+      minHeight: '100vh',
+    },
+    topSection: {
+      position: 'relative',
+      width: '100%',
+      height: '100vh',
+      backgroundColor: '#390d63',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      overflow: 'hidden'
+    },
+    bgImage: {
+      position: 'absolute',
+      top: 0, left: 0, right: 0, bottom: 0,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      zIndex: 0,
+      backgroundImage: `url('/img/purple.png')`
+    },
+    navBar: {
+      width: '100%',
+      position: 'relative',
+      zIndex: 10,
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: '40px 64px'
+    },
+    creatorsContainer: {
+      zIndex: 10,
+      flexGrow: 1,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+      maxWidth: '1200px',
+      padding: '20px'
+    },
 
-export default function AboutPage() {
+    // SECTION 2
+    section2: {
+      width: '100%',
+      padding: '80px 0px', // Removed horizontal padding so grid can span full to align with background
+      display: 'flex',
+      justifyContent: 'center',
+      background: 'linear-gradient(to right, #ffe800 0%, #ffe800 50%, #ff8c00 50%, #ff8c00 100%)'
+    },
+    cardsGrid: {
+      width: '100%',
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gap: '0px', // Gap is handled by centering in each 50% column
+      position: 'relative',
+      zIndex: 10,
+      justifyItems: 'center' // Centers each card inside its background half!
+    },
+    pinkCard: {
+      backgroundColor: '#ff009d',
+      padding: '40px',
+      borderRadius: '24px',
+      display: 'flex',
+      flexDirection: 'row',
+      gap: '24px',
+      boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)',
+      border: '4px solid #ff009d',
+      maxWidth: '550px', // Constrain width so it looks like a nice card
+      width: '90%'
+    },
+    greenCard: {
+      backgroundColor: '#b3ff00',
+      padding: '40px',
+      borderRadius: '24px',
+      display: 'flex',
+      flexDirection: 'row',
+      gap: '24px',
+      boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)',
+      border: '4px solid #b3ff00',
+      maxWidth: '550px',
+      width: '90%'
+    },
+    imageCol: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '16px',
+      width: '120px',
+      flexShrink: 0
+    },
+    placeholderImage: {
+      width: '100%',
+      aspectRatio: '1 / 1',
+      objectFit: 'cover',
+      borderRadius: '12px',
+      backgroundColor: '#000'
+    },
+    cardTextCol: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
+      paddingTop: '8px',
+      color: '#000'
+    },
+    // SECTION 3
+    section3: {
+      width: '100%',
+      padding: '96px 0px', // Full width
+      display: 'flex',
+      justifyContent: 'center',
+      background: 'linear-gradient(85deg, #a100ff 0%, #a100ff 33.3%, #6805c3 33.3%, #6805c3 66.6%, #2d015c 66.6%, #2d015c 100%)',
+      position: 'relative'
+    },
+    overlay: {
+      position: 'absolute',
+      inset: 0,
+      backgroundColor: '#270341',
+      mixBlendMode: 'multiply',
+      opacity: 0.1
+    },
+    purpleBoxesGrid: {
+      width: '100%',
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr 1fr',
+      gap: '0px',
+      position: 'relative',
+      zIndex: 10,
+      justifyItems: 'center' // Ensure content centers in its 1/3 background box
+    },
+    purpleBox: {
+      backgroundColor: 'transparent',
+      border: 'none',
+      padding: '20px',
+      minHeight: '300px',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center', // Center content
+      textAlign: 'center'
+    },
+    // SECTION 4
+    section4: {
+      width: '100%',
+      padding: '96px 40px',
+      backgroundColor: '#fbff00',
+      color: '#000',
+      display: 'flex',
+      justifyContent: 'center'
+    },
+    joinContainer: {
+      maxWidth: '1100px',
+      width: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center'
+    },
+    joinGrid: {
+      width: '100%',
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gap: '96px',
+      textAlign: 'left'
+    },
+    footerContainer: {
+      width: '100%',
+      padding: '32px 40px 48px',
+      backgroundColor: '#fbff00',
+      color: '#000',
+      display: 'flex',
+      justifyContent: 'center'
+    },
+    footerInner: {
+      maxWidth: '1100px',
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      fontWeight: '900',
+      textTransform: 'uppercase',
+      letterSpacing: '0.05em'
+    }
+  };
+
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--cream)' }}>
+    <div style={styles.container}>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@400;700;800;900&display=swap');
+        .custom-display-font {
+          font-family: 'Lilita One', cursive, sans-serif;
+        }
+      `}</style>
+      {/* Top Section */}
+      <section style={styles.topSection}>
+        <div style={styles.bgImage}></div>
 
-      {/* Hero */}
-      <section style={{
-        background: 'linear-gradient(135deg, #1a4d2e 0%, #2d7a4f 60%, #4caf80 100%)',
-        padding: '120px 24px 80px', textAlign: 'center', position: 'relative', overflow: 'hidden',
-      }}>
-        <div style={{ position: 'absolute', top: -80, left: -80, width: 320, height: 320, borderRadius: '50%', background: 'rgba(255,255,255,0.05)' }} />
-        <div style={{ position: 'absolute', bottom: -60, right: -60, width: 250, height: 250, borderRadius: '50%', background: 'rgba(255,255,255,0.04)' }} />
-        <div style={{ position: 'relative', zIndex: 1, maxWidth: 700, margin: '0 auto' }}>
-          <span style={{ background: 'rgba(244,196,48,0.2)', color: '#f4c430', padding: '6px 18px', borderRadius: 20, fontSize: '0.8rem', fontWeight: 600, letterSpacing: '1px', border: '1px solid rgba(244,196,48,0.3)', display: 'inline-block', marginBottom: 22 }}>
-            🌿 OUR STORY
-          </span>
-          <h1 style={{ fontFamily: 'var(--font-heading)', color: 'white', fontSize: 'clamp(2rem, 5vw, 3.2rem)', lineHeight: 1.15, marginBottom: 20 }}>
-            Fresh Food. Real People.<br />Local Roots.
-          </h1>
-          <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: '1.08rem', lineHeight: 1.7, maxWidth: 580, margin: '0 auto 36px' }}>
-            Easy Groceries was born from a simple belief: everyone deserves access to fresh, affordable, quality food — delivered with care right to their door.
-          </p>
-          <Link to="/shop" className="btn-gold" style={{ padding: '14px 34px', fontSize: '1rem' }}>
-            🛒 Start Shopping
-          </Link>
+        {/* Navbar */}
+        <div style={styles.navBar}>
+          <div style={{ width: '40px' }}></div> {/* Spacer to maintain flex layout space */}
+          <img
+            src="/img/logo.png"
+            alt="Snackway Surfers Logo"
+            style={{
+              height: '150px',
+              top: '130px',
+              objectFit: 'contain',
+              position: 'absolute',
+              left: '50%',
+              transform: 'translateX(-50%)'
+            }}
+          />
+          <button style={{ color: '#fff', background: 'transparent', border: 'none', cursor: 'pointer', zIndex: 10 }}>
+            <svg style={{ width: '40px', height: '40px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+
+        {/* Creators Image */}
+        <div style={styles.creatorsContainer}>
+          <img src="/img/creators.png" alt="CREATORS" style={{ width: '100%', maxHeight: '70vh', objectFit: 'contain', filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.5))' }} />
+        </div>
+
+
+      </section>
+
+      {/* Creators Description Section - Split Background */}
+      <section style={styles.section2}>
+        <div style={styles.cardsGrid}>
+
+          {/* Content Creator Box */}
+          <div style={styles.pinkCard}>
+            {/* Image Placeholders Col */}
+            <div style={styles.imageCol}>
+              <img src="/img/about/deanna1.jpeg" alt="Content Creator" style={styles.placeholderImage} />
+              <img src="/img/about/deanna2.jpeg" alt="Content Creator" style={styles.placeholderImage} />
+            </div>
+
+            <div style={styles.cardTextCol}>
+              <h2 className="custom-display-font" style={{ fontSize: '3.5rem', textTransform: 'uppercase', color: '#ffe800', lineHeight: 0.9, letterSpacing: '0.02em', margin: '0 0 16px 0', textShadow: '0 4px 6px rgba(0,0,0,0.1)', WebkitTextStroke: '2px #ff009d' }}>
+                DEANNA<br />MABEN
+              </h2>
+
+              {/*<p style={{ fontWeight: '900', fontSize: '1.4rem', margin: '0 0 8px 0', textTransform: 'uppercase', letterSpacing: '0.02em' }}>A FUN DESCRIPTION.</p>*/}
+              <p style={{ fontSize: '1.05rem', fontWeight: '700', lineHeight: 1.4, margin: 0 }}>Would rather talk to a rock than be in college, yet here she is, peak resilience. Ambitious but lazy, and too nonchalant to show it. Don’t be surprised if she opens a cafe someday, because praan jaye but aesthetics na jaye.<br />50 rupees to you if you can piss her off.</p>
+            </div>
+          </div>
+
+          {/* Edible Artist Box */}
+          <div style={styles.greenCard}>
+            {/* Image Placeholders Col */}
+            <div style={styles.imageCol}>
+              <img src="/img/about/tanvi1.jpeg" alt="Edible Artist" style={styles.placeholderImage} />
+              <img src="/img/about/tanvi2.jpeg" alt="Edible Artist" style={styles.placeholderImage} />
+            </div>
+
+            <div style={styles.cardTextCol}>
+              <h2 className="custom-display-font" style={{ fontSize: '3.5rem', textTransform: 'uppercase', color: '#000', lineHeight: 0.9, letterSpacing: '0.02em', margin: '0 0 16px 0', textShadow: '0 1px 2px rgba(0,0,0,0.1)' }}>
+                TANVI<br />PAI
+              </h2>
+
+              {/*<p style={{ fontWeight: '900', fontSize: '1.4rem', margin: '0 0 8px 0', textTransform: 'uppercase', letterSpacing: '0.02em' }}>A SHORT DESCRIPTION.</p>*/}
+              <p style={{ fontSize: '1.05rem', fontWeight: '700', lineHeight: 1.4, margin: 0 }}>If you spot a random handkerchief or hear a phone hit the floor, you already know she’s in the room. <br />She runs on pure chaos and clumsiness, but the moment it’s time to work, she’s locked in. A walking mess, a creative on her feet, and somehow always making it work.</p>
+            </div>
+          </div>
+
         </div>
       </section>
 
-      {/* Mission */}
-      <section className="section">
-        <div className="page-container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'center' }}>
+      {/* Process Section (Purple Boxes) - Split Background */}
+      <section style={styles.section3}>
+        <div style={styles.overlay}></div>
+        <div style={styles.purpleBoxesGrid}>
+
+          {/* Box 1 - Previews */}
+          <div style={styles.purpleBox}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left', maxWidth: '280px', margin: '0 auto', width: '100%' }}>
+              <svg width="100" height="100" viewBox="0 0 100 100" fill="none" stroke="#fbff00" style={{ marginBottom: '32px' }}>
+                <circle cx="50" cy="50" r="45" strokeWidth="4" />
+                <path d="M50 35 C 20 35 15 50 15 50 C 15 50 20 65 50 65 C 80 65 85 50 85 50 C 85 50 80 35 50 35 Z" strokeWidth="4" fill="none" />
+                <circle cx="50" cy="50" r="14" strokeWidth="4" fill="#fbff00" />
+              </svg>
+
+              <span style={{ fontSize: '0.875rem', fontWeight: '900', textTransform: 'uppercase', color: '#fbff00', letterSpacing: '0.1em', marginBottom: '8px' }}>PERKS</span>
+              <h3 className="custom-display-font" style={{ fontSize: '2.5rem', color: '#fbff00', lineHeight: 1, margin: '0 0 16px 0', textTransform: 'uppercase', letterSpacing: '0.04em' }}>TEST PRODUCTS</h3>
+              <p style={{ fontSize: '1rem', color: '#fff', lineHeight: 1.5, margin: 0, fontWeight: '400' }}>
+                Yes, it’s exactly what it sounds like. You eat snacks. Truly a tough job, but someone has to make that sacrifice.
+              </p>
+            </div>
+          </div>
+
+          {/* Box 2 - Giveaway Codes */}
+          <div style={styles.purpleBox}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left', maxWidth: '280px', margin: '0 auto', width: '100%' }}>
+              <svg width="100" height="100" viewBox="0 0 100 100" fill="none" stroke="#fbff00" style={{ marginBottom: '32px' }}>
+                <circle cx="50" cy="50" r="45" strokeWidth="4" />
+                <circle cx="50" cy="50" r="38" strokeWidth="2" />
+                <circle cx="50" cy="50" r="32" strokeWidth="2" />
+                <path d="M50 25 L 56 42 L 74 42 L 59 52 L 64 69 L 50 60 L 36 69 L 41 52 L 26 42 L 44 42 Z" fill="#fbff00" stroke="none" />
+              </svg>
+
+              <span style={{ fontSize: '0.875rem', fontWeight: '900', textTransform: 'uppercase', color: '#fbff00', letterSpacing: '0.1em', marginBottom: '8px' }}>PERKS</span>
+              <h3 className="custom-display-font" style={{ fontSize: '2.5rem', color: '#fbff00', lineHeight: 1, margin: '0 0 16px 0', textTransform: 'uppercase', letterSpacing: '0.04em' }}>GIVEAWAY CODES</h3>
+              <p style={{ fontSize: '1rem', color: '#fff', lineHeight: 1.5, margin: 0, fontWeight: '400' }}>
+                Exclusive discounts so you can spend less money… and then immediately spend it again on more snacks. Financial responsibility at its finest.
+              </p>
+            </div>
+          </div>
+
+          {/* Box 3 - Community */}
+          <div style={styles.purpleBox}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left', maxWidth: '280px', margin: '0 auto', width: '100%' }}>
+              <svg width="100" height="100" viewBox="0 0 100 100" fill="none" stroke="#fbff00" style={{ marginBottom: '32px' }}>
+                <circle cx="50" cy="50" r="45" strokeWidth="4" />
+                <g transform="translate(0, -10)">
+                  <path fill="#fbff00" stroke="none" d="M 64.6,35.4 C 60.7,33.6 56.6,32.2 52.3,31.7 51.5,33.2 50.6,35.0 50,36.6 45.4,36.0 40.9,36.0 36.3,36.6 35.7,35.0 34.8,33.2 34.0,31.7 29.7,32.2 25.5,33.6 21.7,35.4 11.5,50.7 8.5,65.6 11.2,80.3 16.5,84.2 21.6,86.6 26.6,88.0 27.9,86.3 29.0,84.5 30.1,82.6 25.6,80.9 21.4,78.9 17.4,76.5 18.5,75.7 19.5,74.9 20.6,74.0 29.8,78.2 39.5,80.5 49.6,80.5 59.7,80.5 69.4,78.2 78.6,74.0 79.6,74.9 80.7,75.7 81.8,76.5 77.8,78.9 73.6,80.9 69.1,82.6 70.2,84.5 71.3,86.3 72.6,88.0 77.6,86.6 82.6,84.2 87.9,80.3 91.2,62.8 85.0,47.0 64.6,35.4 Z M 35.6,65.7 C 31.6,65.7 28.3,62.1 28.3,57.7 28.3,53.2 31.6,49.6 35.6,49.6 39.7,49.6 43.1,53.2 43.0,57.7 43.0,62.1 39.7,65.7 35.6,65.7 Z M 64.4,65.7 C 60.4,65.7 57.1,62.1 57.1,57.7 57.1,53.2 60.4,49.6 64.4,49.6 68.5,49.6 71.8,53.2 71.8,57.7 71.8,62.1 68.5,65.7 64.4,65.7 Z"></path>
+                </g>
+              </svg>
+
+              <span style={{ fontSize: '0.875rem', fontWeight: '900', textTransform: 'uppercase', color: '#fbff00', letterSpacing: '0.1em', marginBottom: '8px' }}>PERKS</span>
+              <h3 className="custom-display-font" style={{ fontSize: '2.5rem', color: '#fbff00', lineHeight: 1, margin: '0 0 16px 0', textTransform: 'uppercase', letterSpacing: '0.04em' }}>COMMUNITY</h3>
+              <p style={{ fontSize: '1rem', color: '#fff', lineHeight: 1.5, margin: 0, fontWeight: '400' }}>
+                Join a highly sophisticated group of people whose main personality trait is loving snacks. It’s chaotic, it’s bonded, it’s slightly concerning
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Join Us Section */}
+      <section style={styles.section4}>
+        <div style={styles.joinContainer}>
+          <h2 className="custom-display-font" style={{ fontSize: '4.5rem', textTransform: 'uppercase', margin: '0 0 64px 0', textAlign: 'center', lineHeight: 1, letterSpacing: '0.02em' }}>WE ARE HIRING</h2>
+
+          <div style={styles.joinGrid}>
             <div>
-              <h2 className="section-title">Our Mission</h2>
-              <p style={{ color: 'var(--text-mid)', fontSize: '1rem', lineHeight: 1.8, marginBottom: 20 }}>
-                We partner directly with local farms and producers to bring you the freshest groceries, cutting out middlemen so you get better quality at honest prices.
-              </p>
-              <p style={{ color: 'var(--text-mid)', fontSize: '1rem', lineHeight: 1.8 }}>
-                Every item in our store is hand-picked and quality-checked. We believe in transparency — you'll always know where your food comes from.
-              </p>
+              <h3 className="custom-display-font" style={{ fontSize: '2.5rem', textTransform: 'uppercase', margin: '0 0 24px 0', letterSpacing: '0.02em', color: '#1a1a1a' }}>WHO CAN JOIN</h3>
+              <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px', fontWeight: '800', fontSize: '1.25rem', color: '#333' }}>
+                <li>• Be a fan of Snacks and Creativity</li>
+                <li>• Don't eat the snacks</li>
+
+              </ul>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-              {[
-                { emoji: '🌱', title: 'Locally Sourced', desc: '80% of our produce comes from farms within 100 miles' },
-                { emoji: '🌍', title: 'Eco Friendly', desc: 'Minimal packaging, reusable bags, carbon-neutral delivery' },
-                { emoji: '💚', title: 'Community First', desc: 'We support local farmers and fair trade practices' },
-                { emoji: '🔬', title: 'Quality Tested', desc: 'Every product passes our freshness and safety checks' },
-              ].map(item => (
-                <div key={item.title} style={{
-                  background: 'white', borderRadius: 18, padding: 22,
-                  boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
-                }}>
-                  <div style={{ fontSize: 32, marginBottom: 10 }}>{item.emoji}</div>
-                  <h4 style={{ fontWeight: 700, color: 'var(--text-dark)', marginBottom: 6, fontSize: '0.95rem' }}>{item.title}</h4>
-                  <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem', lineHeight: 1.5 }}>{item.desc}</p>
-                </div>
-              ))}
+
+            <div>
+              <h3 className="custom-display-font" style={{ fontSize: '2.5rem', textTransform: 'uppercase', margin: '0 0 24px 0', letterSpacing: '0.02em', color: '#1a1a1a' }}>HOW WE HIRE</h3>
+              <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px', fontWeight: '800', fontSize: '1.25rem', color: '#333' }}>
+                <li>• Highly qualified application</li>
+                <li>• Portfolio & Interview</li>
+                <li>• We judge you</li>
+                <li>• We will think about it.</li>
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="section" style={{ background: 'var(--green-dark)', padding: '72px 0' }}>
-        <div className="page-container">
-          <h2 className="section-title" style={{ color: 'white', textAlign: 'center' }}>Our Journey</h2>
-          <p className="section-subtitle" style={{ color: 'rgba(255,255,255,0.6)', textAlign: 'center' }}>Six years of growth, freshness, and community</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 24, marginTop: 16 }}>
-            {MILESTONES.map((m, i) => (
-              <div key={m.year} style={{
-                textAlign: 'center', padding: '28px 20px',
-                background: 'rgba(255,255,255,0.08)', borderRadius: 18,
-                border: i === MILESTONES.length - 1 ? '2px solid rgba(244,196,48,0.5)' : '1px solid rgba(255,255,255,0.1)',
-              }}>
-                <div style={{
-                  fontFamily: 'var(--font-heading)', fontSize: '2rem', fontWeight: 700,
-                  color: i === MILESTONES.length - 1 ? '#f4c430' : 'white', marginBottom: 8,
-                }}>{m.year}</div>
-                <div style={{ fontWeight: 700, color: 'rgba(255,255,255,0.9)', marginBottom: 8 }}>{m.label}</div>
-                <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.85rem', lineHeight: 1.5 }}>{m.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Team */}
-      <section className="section">
-        <div className="page-container">
-          <h2 className="section-title" style={{ textAlign: 'center' }}>Meet the Team</h2>
-          <p className="section-subtitle" style={{ textAlign: 'center' }}>The passionate people behind your groceries</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 24 }}>
-            {TEAM.map(member => (
-              <div key={member.name} style={{
-                background: 'white', borderRadius: 22, padding: '36px 28px', textAlign: 'center',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.08)', transition: 'transform 0.2s',
-              }}
-              onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-5px)'}
-              onMouseLeave={e => e.currentTarget.style.transform = ''}
-              >
-                <div style={{
-                  width: 80, height: 80, borderRadius: '50%', fontSize: 42,
-                  background: 'var(--green-pale)', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  margin: '0 auto 16px',
-                }}>
-                  {member.emoji}
-                </div>
-                <h3 style={{ fontFamily: 'var(--font-heading)', color: 'var(--text-dark)', fontSize: '1.15rem', marginBottom: 4 }}>{member.name}</h3>
-                <p style={{ color: 'var(--green-mid)', fontWeight: 600, fontSize: '0.82rem', marginBottom: 14, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{member.role}</p>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: 1.6 }}>{member.bio}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* CTA */}
-      <section className="section" style={{ background: 'var(--cream-dark)', padding: '60px 0' }}>
-        <div className="page-container" style={{ textAlign: 'center', maxWidth: 560, margin: '0 auto' }}>
-          <h2 className="section-title">Ready to Taste the Difference?</h2>
-          <p className="section-subtitle">Browse our full range of fresh, quality groceries.</p>
-          <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/shop" className="btn-primary" style={{ padding: '13px 32px', fontSize: '1rem' }}>Shop Now →</Link>
-            <Link to="/home" className="btn-outline" style={{ padding: '13px 32px', fontSize: '1rem' }}>Back to Home</Link>
-          </div>
-        </div>
-      </section>
     </div>
   );
-}
+};
+
+export default SnackwaySurfersPage;
