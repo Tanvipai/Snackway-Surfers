@@ -316,7 +316,6 @@ export default function ProfilePage() {
 
       <div className="pp-card" onClick={e => e.stopPropagation()}>
 
-        {/* ── Hamburger menu ── */}
         <div style={{ position: "absolute", top: -16, right: -16, zIndex: 10 }}>
           <div className="pp-menu-btn"
             onClick={e => { e.stopPropagation(); setMenuOpen(v => !v); }}>
@@ -332,7 +331,6 @@ export default function ProfilePage() {
           )}
         </div>
 
-        {/* ── Top: avatar + name + email ── */}
         <div className="pp-top">
           <div className="pp-avatar-frame">
             {charData?.img
@@ -351,7 +349,6 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        {/* ── Action buttons ── */}
         <div className="pp-actions">
           <button className="pp-action-btn pp-btn-order">
             <div className="pp-btn-icon">🛒</div>
@@ -367,7 +364,6 @@ export default function ProfilePage() {
 
       </div>
 
-      {/* ── Modal ── */}
       {modal && (
         <div className="pp-modal-bg" onClick={closeModal}>
           <div className="pp-modal" onClick={e => e.stopPropagation()}>

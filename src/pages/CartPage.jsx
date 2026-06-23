@@ -23,7 +23,7 @@ export default function CartPage() {
     setTimeout(() => { removeFromCart(id); setRemovingId(null); }, 300);
   };
 
-  /* ── EMPTY CART ─────────────────────────────────────── */
+  
   if (cart.length === 0) return (
     <div style={{
       height: '100vh', overflow: 'hidden',
@@ -61,7 +61,6 @@ export default function CartPage() {
     </div>
   );
 
-  /* ── CART WITH ITEMS ────────────────────────────────── */
   return (
     <div style={{
       height: '100vh', overflow: 'hidden',
@@ -71,10 +70,9 @@ export default function CartPage() {
     }}>
       <style>{animCSS}</style>
 
-      {/* Dark overlay */}
       <div style={{ position: 'absolute', inset: 0, background: 'rgba(10,25,50,0.45)', pointerEvents: 'none', zIndex: 0 }} />
 
-      {/* Flash overlay */}
+    
       <div style={{
         position: 'fixed', inset: 0, zIndex: 200,
         background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.9), rgba(20,40,80,0.6))',
@@ -84,7 +82,7 @@ export default function CartPage() {
 
       <HeaderBar cartCount={cartCount} />
 
-      {/* ── BODY ─────────────────────────────────────────── */}
+     
       <div style={{
         flex: 1, display: 'flex', gap: 24,
         position: 'relative', zIndex: 2,
@@ -93,10 +91,10 @@ export default function CartPage() {
         animation: loaded ? 'coFadeIn 0.5s 0.3s ease-out both' : 'none',
       }}>
 
-        {/* ── LEFT: Cart items list ───────────────────── */}
+  
         <div style={{ flex: 1, overflowY: 'auto', overflowX: 'hidden', paddingRight: 8 }}>
 
-          {/* Header row */}
+        
           <div style={{
             display: 'flex', justifyContent: 'space-between', alignItems: 'center',
             marginBottom: 16,
@@ -119,7 +117,7 @@ export default function CartPage() {
             }}>CLEAR ALL</button>
           </div>
 
-          {/* Glass card with items */}
+  
           <div style={{
             background: 'rgba(255,255,255,0.08)',
             backdropFilter: 'blur(14px)',
@@ -152,7 +150,7 @@ export default function CartPage() {
                   onMouseOver={e => e.currentTarget.style.transform = 'translateX(4px)'}
                   onMouseOut={e => e.currentTarget.style.transform = ''}>
 
-                  {/* Product image */}
+     
                   <div style={{
                     width: 56, height: 56, borderRadius: 10, flexShrink: 0,
                     background: 'rgba(255,255,255,0.1)',
@@ -163,13 +161,12 @@ export default function CartPage() {
                       onError={e => { e.target.style.display = 'none'; e.target.parentElement.innerHTML = `<span style="font-size:28px">₹{item.emoji}</span>`; }} />
                   </div>
 
-                  {/* Info */}
+              
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ color: '#fff', fontSize: 14, fontWeight: 800, lineHeight: 1.2 }}>{item.name}</div>
                     <div style={{ color: 'rgba(255,255,255,0.45)', fontSize: 11, fontWeight: 600, marginTop: 2 }}>{item.unit}</div>
                   </div>
 
-                  {/* Qty controls */}
                   <div style={{
                     display: 'flex', alignItems: 'center', gap: 0,
                     background: 'rgba(255,255,255,0.1)', borderRadius: 10,
@@ -186,7 +183,7 @@ export default function CartPage() {
                     </button>
                   </div>
 
-                  {/* Price */}
+         
                   <div style={{ textAlign: 'right', minWidth: 65 }}>
                     <div style={{ color: '#FFD700', fontSize: 16, fontWeight: 900 }}>
                       ₹{(item.price * item.qty).toFixed(2)}
@@ -198,7 +195,7 @@ export default function CartPage() {
                     )}
                   </div>
 
-                  {/* Remove */}
+           
                   <button onClick={() => handleRemove(item.id)} style={{
                     background: 'none', border: 'none', cursor: 'pointer',
                     color: 'rgba(255,255,255,0.3)', padding: 6, borderRadius: 8,
@@ -213,7 +210,7 @@ export default function CartPage() {
             </div>
           </div>
 
-          {/* Continue shopping */}
+        
           <button onClick={() => navigate('/shop')} style={{
             background: 'none', border: 'none', cursor: 'pointer',
             color: 'rgba(255,255,255,0.6)', fontSize: 13, fontWeight: 700,
@@ -224,7 +221,7 @@ export default function CartPage() {
           </button>
         </div>
 
-        {/* ── RIGHT: Order Summary ─────────────────────── */}
+      
         <div style={{
           width: 320, flexShrink: 0,
           animation: loaded ? 'coSlideLeft 0.5s 0.6s ease-out both' : 'none',
@@ -248,7 +245,7 @@ export default function CartPage() {
               vc={delivery === 0 ? '#4CAF50' : undefined} />
             {discount > 0 && <SRow label="Loyalty Discount (5%)" value={`-₹${discount}`} vc="#FF6B6B" />}
 
-            {/* Delivery status */}
+        
             {delivery === 0 && cartTotal > 0 ? (
               <div style={{
                 background: 'rgba(76,175,80,0.12)', border: '1.5px solid rgba(76,175,80,0.3)',
@@ -265,10 +262,10 @@ export default function CartPage() {
               </div>
             )}
 
-            {/* Divider */}
+      
             <div style={{ height: 1, background: 'rgba(255,255,255,0.1)', margin: '14px 0', borderRadius: 1 }} />
 
-            {/* Total */}
+         
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
               <span style={{ fontWeight: 800, fontSize: 16, color: '#fff' }}>Total</span>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
@@ -279,7 +276,7 @@ export default function CartPage() {
               </div>
             </div>
 
-            {/* Checkout button */}
+      
             <button onClick={() => navigate('/checkout')} style={{ ...goldBtn, width: '100%' }}
               onMouseDown={e => { e.currentTarget.style.transform = 'translateY(4px)'; e.currentTarget.style.boxShadow = '0 0px 0 #CC8800'; }}
               onMouseUp={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 0 #CC8800, 0 8px 20px rgba(0,0,0,0.2)'; }}
@@ -287,7 +284,6 @@ export default function CartPage() {
               CHECKOUT →
             </button>
 
-            {/* Trust badges */}
             <div style={{
               display: 'flex', justifyContent: 'center', gap: 16, marginTop: 16,
               fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.45)',
@@ -305,7 +301,6 @@ export default function CartPage() {
   );
 }
 
-/* ══════════ SUB-COMPONENTS ══════════════════════════════ */
 
 function HeaderBar({ cartCount }) {
   return (
@@ -316,7 +311,6 @@ function HeaderBar({ cartCount }) {
       minHeight: 70,
       animation: 'coSlideDown 0.5s 0.3s ease-out both',
     }}>
-      {/* Cart icon – top right */}
       <Link to="/cart" style={{
         position: 'absolute', right: 24, top: 12,
         display: 'flex', alignItems: 'center', gap: 10,
@@ -345,7 +339,6 @@ function HeaderBar({ cartCount }) {
         <span style={{ color: '#FFD700', fontSize: 14, fontWeight: 800, letterSpacing: 1 }}>{cartCount}</span>
       </Link>
 
-      {/* Centre logo */}
       <img
         src="/img/subway surfers assets/logo.png" alt="Logo"
         style={{ height: 80, objectFit: 'contain', filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.5))' }}
@@ -384,7 +377,7 @@ function SRow({ label, value, vc }) {
   );
 }
 
-/* ── Shared styles ─────────────────────────────────────── */
+
 const navItem = {
   display: 'flex', flexDirection: 'column', alignItems: 'center',
   textDecoration: 'none', color: 'rgba(255,255,255,0.5)', gap: 4,
@@ -409,7 +402,6 @@ const goldBtn = {
   transition: 'transform 0.1s, box-shadow 0.1s',
 };
 
-/* ── Animation CSS ─────────────────────────────────────── */
 const animCSS = `
   @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap');
 

@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 
-const WALL_IMG = "/img/graffiti-wall.png";   // your brick wall image
-const SPRAY_IMG = "/img/spraybottle1.png";       // your spray bottle image
+const WALL_IMG = "/img/graffiti-wall.png";
+const SPRAY_IMG = "/img/spraybottle1.png";
 
 const TOOLS = [
     { id: "red", label: "RED", color: "#FF0000" },
@@ -24,7 +24,6 @@ export default function GraffitiWall({ onBack }) {
 
     const [tool, setTool] = useState("red");
 
-    // inject minimal styles
     useEffect(() => {
         if (document.getElementById("gw-s")) return;
         const s = document.createElement("style");
@@ -68,7 +67,6 @@ export default function GraffitiWall({ onBack }) {
         document.head.appendChild(s);
     }, []);
 
-    // size canvas
     useEffect(() => {
         const cv = canvasRef.current;
         const resize = () => {
@@ -166,19 +164,14 @@ export default function GraffitiWall({ onBack }) {
             onMouseUp={onUp} onMouseLeave={onLeave}
             onMouseEnter={onEnter}
         >
-            {/* Spray bottle as cursor */}
             <img ref={cursorRef} src={SPRAY_IMG} className="gw-cursor" alt="" />
 
-            {/* Your brick wall image */}
             <div className="gw-bg" style={{ backgroundImage: `url('${WALL_IMG}')` }} />
 
-            {/* Transparent graffiti layer */}
             <canvas ref={canvasRef} className="gw-cv" />
 
-            {/* Back button */}
             <button className="gw-back" onClick={onBack}>← Back</button>
 
-            {/* Right sidebar — small vertical buttons */}
             <div className="gw-sidebar">
                 {TOOLS.map(t => (
                     <div key={t.id}

@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# Snackway Surfers
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A Subway Surfers themed online grocery store. 
 
-## Available Scripts
+The idea was simple: what if buying groceries looked like a Subway Surfers menu? Animated buttons, floating characters, the whole aesthetic. Turns out it's a lot more fun to shop for broccoli when there's a graffiti wall involved.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## What's inside
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+You sign up, pick your Subway Surfers character, and get dropped into a home screen that looks straight out of the game. From there you can browse products by category, add things to your cart, go through a checkout flow, and manage your profile. There's also a wishlist, an about page, and a graffiti wall where you can just draw stuff.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Everything runs on localStorage — no backend, no database. Users, cart, orders, wishlist — all of it lives in the browser.
 
-### `npm test`
+## Pages
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| Route | What it is |
+|---|---|
+| `/login` | Sign up or log in, pick your character |
+| `/home` | Main hub — animated, game-style navigation |
+| `/shop` | All products, filterable by category |
+| `/aisles` | Category browsing |
+| `/product/:id` | Product detail page |
+| `/cart` | Cart with quantity controls and order summary |
+| `/checkout` | Address + payment, submits the order |
+| `/order-confirmation` | Post-checkout screen |
+| `/profile` | Character display, change username/password |
+| `/wishlist` | Saved products |
+| `/about` | About the creators |
 
-### `npm run build`
+## Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React 19 + React Router v7
+- No UI libraries — all styling is inline or injected CSS
+- Firebase is installed but not wired up yet (auth and persistence are localStorage for now)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Running it locally
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm install
+npm start
+```
 
-### `npm run eject`
+Opens at `http://localhost:3000`. That's it.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

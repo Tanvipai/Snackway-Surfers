@@ -38,7 +38,6 @@ export default function ProductDetailPage() {
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--paper)' }}>
-      {/* Breadcrumb */}
       <div style={{ background: 'var(--white)', borderBottom: '1px solid var(--border)', padding: '12px 0' }}>
         <div className="page-container" style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--ink-muted)', fontSize: '0.82rem', flexWrap: 'wrap' }}>
           {[['/', 'Home'], ['/shop', 'Shop'], [`/shop?category=${product.category}`, product.category]].map(([to, label]) => (
@@ -57,7 +56,6 @@ export default function ProductDetailPage() {
       <div className="page-container" style={{ padding: '40px 24px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 56, alignItems: 'start' }}>
 
-          {/* Image */}
           <div style={{ position: 'sticky', top: 76 }}>
             <div style={{
               background: 'var(--paper-dark)', border: '1px solid var(--border)',
@@ -68,9 +66,7 @@ export default function ProductDetailPage() {
             </div>
           </div>
 
-          {/* Info */}
           <div style={{ animation: 'slideUp 0.35s ease' }}>
-            {/* Badges row */}
             <div style={{ display: 'flex', gap: 7, flexWrap: 'wrap', marginBottom: 14 }}>
               <span className="tag">{product.category}</span>
               {product.badge && (
@@ -92,7 +88,6 @@ export default function ProductDetailPage() {
               <span style={{ color: 'var(--ink-muted)', fontSize: '0.85rem' }}>({product.reviews} reviews)</span>
             </div>
 
-            {/* Price */}
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 4 }}>
               <span style={{ fontFamily: 'var(--font-heading)', fontSize: '2rem', fontWeight: 700, color: 'var(--ink)' }}>
                 ${product.price.toFixed(2)}
@@ -113,7 +108,6 @@ export default function ProductDetailPage() {
             <div className="divider" />
             <p style={{ color: 'var(--ink-mid)', fontSize: '0.95rem', lineHeight: 1.72, marginBottom: 24 }}>{product.description}</p>
 
-            {/* Qty */}
             {product.inStock && (
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 18 }}>
                 <span style={{ fontWeight: 600, color: 'var(--ink-mid)', fontSize: '0.9rem' }}>Qty:</span>
@@ -125,7 +119,6 @@ export default function ProductDetailPage() {
               </div>
             )}
 
-            {/* CTA */}
             <div style={{ display: 'flex', gap: 10, marginBottom: 10 }}>
               <button onClick={handleAdd} disabled={!product.inStock} className="btn-primary"
                 style={{ flex: 1, justifyContent: 'center', padding: '12px', fontSize: '0.95rem', background: added ? '#2e2e2b' : undefined, opacity: !product.inStock ? 0.5 : 1 }}>
@@ -149,7 +142,6 @@ export default function ProductDetailPage() {
               </button>
             )}
 
-            {/* Trust chips */}
             <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 24 }}>
               {['🚚 Free delivery over $30', '↩️ 24hr returns', '✓ Quality checked'].map(t => (
                 <span key={t} className="tag" style={{ fontSize: '0.75rem' }}>{t}</span>

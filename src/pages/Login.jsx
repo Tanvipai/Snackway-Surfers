@@ -116,7 +116,6 @@ const CSS = `
   }
   .eg-link:hover { color:#fffbe0; }
 
-  /* ── Character selection ── */
   .cs-overlay {
     position:fixed; inset:0; z-index:30;
     background:rgba(20, 24, 34, 0.85); backdrop-filter: blur(4px);

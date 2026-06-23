@@ -47,10 +47,9 @@ const SnackwaySurfersPage = () => {
       padding: '20px'
     },
 
-    // SECTION 2
     section2: {
       width: '100%',
-      padding: '80px 0px', // Removed horizontal padding so grid can span full to align with background
+      padding: '80px 0px', // no side padding so the split background colors bleed to the edges
       display: 'flex',
       justifyContent: 'center',
       background: 'linear-gradient(to right, #ffe800 0%, #ffe800 50%, #ff8c00 50%, #ff8c00 100%)'
@@ -59,10 +58,10 @@ const SnackwaySurfersPage = () => {
       width: '100%',
       display: 'grid',
       gridTemplateColumns: '1fr 1fr',
-      gap: '0px', // Gap is handled by centering in each 50% column
+      gap: '0px', // spacing comes from centering each card within its background half
       position: 'relative',
       zIndex: 10,
-      justifyItems: 'center' // Centers each card inside its background half!
+      justifyItems: 'center'
     },
     pinkCard: {
       backgroundColor: '#ff009d',
@@ -73,7 +72,7 @@ const SnackwaySurfersPage = () => {
       gap: '24px',
       boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)',
       border: '4px solid #ff009d',
-      maxWidth: '550px', // Constrain width so it looks like a nice card
+      maxWidth: '550px',
       width: '90%'
     },
     greenCard: {
@@ -109,10 +108,9 @@ const SnackwaySurfersPage = () => {
       paddingTop: '8px',
       color: '#000'
     },
-    // SECTION 3
     section3: {
       width: '100%',
-      padding: '96px 0px', // Full width
+      padding: '96px 0px',
       display: 'flex',
       justifyContent: 'center',
       background: 'linear-gradient(85deg, #a100ff 0%, #a100ff 33.3%, #6805c3 33.3%, #6805c3 66.6%, #2d015c 66.6%, #2d015c 100%)',
@@ -132,7 +130,7 @@ const SnackwaySurfersPage = () => {
       gap: '0px',
       position: 'relative',
       zIndex: 10,
-      justifyItems: 'center' // Ensure content centers in its 1/3 background box
+      justifyItems: 'center'
     },
     purpleBox: {
       backgroundColor: 'transparent',
@@ -141,10 +139,10 @@ const SnackwaySurfersPage = () => {
       minHeight: '300px',
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center', // Center content
+      alignItems: 'center',
       textAlign: 'center'
     },
-    // SECTION 4
+    
     section4: {
       width: '100%',
       padding: '96px 40px',
@@ -195,13 +193,13 @@ const SnackwaySurfersPage = () => {
           font-family: 'Lilita One', cursive, sans-serif;
         }
       `}</style>
-      {/* Top Section */}
+     
       <section style={styles.topSection}>
         <div style={styles.bgImage}></div>
 
-        {/* Navbar */}
+        
         <div style={styles.navBar}>
-          <div style={{ width: '40px' }}></div> {/* Spacer to maintain flex layout space */}
+          <div style={{ width: '40px' }}></div> {/* empty div so the logo stays centered in the flex row */}
           <img
             src="/img/logo.png"
             alt="Snackway Surfers Logo"
@@ -221,7 +219,6 @@ const SnackwaySurfersPage = () => {
           </button>
         </div>
 
-        {/* Creators Image */}
         <div style={styles.creatorsContainer}>
           <img src="/img/creators.png" alt="CREATORS" style={{ width: '100%', maxHeight: '70vh', objectFit: 'contain', filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.5))' }} />
         </div>
@@ -229,13 +226,11 @@ const SnackwaySurfersPage = () => {
 
       </section>
 
-      {/* Creators Description Section - Split Background */}
       <section style={styles.section2}>
         <div style={styles.cardsGrid}>
 
-          {/* Content Creator Box */}
+        
           <div style={styles.pinkCard}>
-            {/* Image Placeholders Col */}
             <div style={styles.imageCol}>
               <img src="/img/about/deanna1.jpeg" alt="Content Creator" style={styles.placeholderImage} />
               <img src="/img/about/deanna2.jpeg" alt="Content Creator" style={styles.placeholderImage} />
@@ -246,14 +241,11 @@ const SnackwaySurfersPage = () => {
                 DEANNA<br />MABEN
               </h2>
 
-              {/*<p style={{ fontWeight: '900', fontSize: '1.4rem', margin: '0 0 8px 0', textTransform: 'uppercase', letterSpacing: '0.02em' }}>A FUN DESCRIPTION.</p>*/}
               <p style={{ fontSize: '1.05rem', fontWeight: '700', lineHeight: 1.4, margin: 0 }}>Would rather talk to a rock than be in college, yet here she is, peak resilience. Ambitious but lazy, and too nonchalant to show it. Don’t be surprised if she opens a cafe someday, because praan jaye but aesthetics na jaye.<br />50 rupees to you if you can piss her off.</p>
             </div>
           </div>
 
-          {/* Edible Artist Box */}
           <div style={styles.greenCard}>
-            {/* Image Placeholders Col */}
             <div style={styles.imageCol}>
               <img src="/img/about/tanvi1.jpeg" alt="Edible Artist" style={styles.placeholderImage} />
               <img src="/img/about/tanvi2.jpeg" alt="Edible Artist" style={styles.placeholderImage} />
@@ -264,7 +256,6 @@ const SnackwaySurfersPage = () => {
                 TANVI<br />PAI
               </h2>
 
-              {/*<p style={{ fontWeight: '900', fontSize: '1.4rem', margin: '0 0 8px 0', textTransform: 'uppercase', letterSpacing: '0.02em' }}>A SHORT DESCRIPTION.</p>*/}
               <p style={{ fontSize: '1.05rem', fontWeight: '700', lineHeight: 1.4, margin: 0 }}>If you spot a random handkerchief or hear a phone hit the floor, you already know she’s in the room. <br />She runs on pure chaos and clumsiness, but the moment it’s time to work, she’s locked in. A walking mess, a creative on her feet, and somehow always making it work.</p>
             </div>
           </div>
@@ -272,12 +263,11 @@ const SnackwaySurfersPage = () => {
         </div>
       </section>
 
-      {/* Process Section (Purple Boxes) - Split Background */}
+      
       <section style={styles.section3}>
         <div style={styles.overlay}></div>
         <div style={styles.purpleBoxesGrid}>
 
-          {/* Box 1 - Previews */}
           <div style={styles.purpleBox}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left', maxWidth: '280px', margin: '0 auto', width: '100%' }}>
               <svg width="100" height="100" viewBox="0 0 100 100" fill="none" stroke="#fbff00" style={{ marginBottom: '32px' }}>
@@ -294,7 +284,7 @@ const SnackwaySurfersPage = () => {
             </div>
           </div>
 
-          {/* Box 2 - Giveaway Codes */}
+       
           <div style={styles.purpleBox}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left', maxWidth: '280px', margin: '0 auto', width: '100%' }}>
               <svg width="100" height="100" viewBox="0 0 100 100" fill="none" stroke="#fbff00" style={{ marginBottom: '32px' }}>
@@ -312,7 +302,7 @@ const SnackwaySurfersPage = () => {
             </div>
           </div>
 
-          {/* Box 3 - Community */}
+        
           <div style={styles.purpleBox}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left', maxWidth: '280px', margin: '0 auto', width: '100%' }}>
               <svg width="100" height="100" viewBox="0 0 100 100" fill="none" stroke="#fbff00" style={{ marginBottom: '32px' }}>
@@ -333,7 +323,7 @@ const SnackwaySurfersPage = () => {
         </div>
       </section>
 
-      {/* Join Us Section */}
+      
       <section style={styles.section4}>
         <div style={styles.joinContainer}>
           <h2 className="custom-display-font" style={{ fontSize: '4.5rem', textTransform: 'uppercase', margin: '0 0 64px 0', textAlign: 'center', lineHeight: 1, letterSpacing: '0.02em' }}>WE ARE HIRING</h2>

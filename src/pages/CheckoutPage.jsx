@@ -69,7 +69,6 @@ export default function CheckoutPage() {
     }, 1200);
   }
 
-  /* ── EMPTY CART ─────────────────────────────────────── */
   if (cart.length === 0) return (
     <div style={{
       height: '100vh', overflow: 'hidden',
@@ -103,7 +102,6 @@ export default function CheckoutPage() {
     </div>
   );
 
-  /* ── CHECKOUT FORM ──────────────────────────────────── */
   return (
     <div style={{
       height: '100vh', overflow: 'hidden',
@@ -113,10 +111,8 @@ export default function CheckoutPage() {
     }}>
       <style>{animCSS}</style>
 
-      {/* Dark overlay */}
       <div style={{ position: 'absolute', inset: 0, background: 'rgba(10,25,50,0.45)', pointerEvents: 'none', zIndex: 0 }} />
 
-      {/* Flash overlay */}
       <div style={{
         position: 'fixed', inset: 0, zIndex: 200,
         background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.9), rgba(20,40,80,0.6))',
@@ -124,10 +120,8 @@ export default function CheckoutPage() {
         pointerEvents: 'none',
       }} />
 
-      {/* ── HEADER ──────────────────────────────────────── */}
       <HeaderBar cartCount={cartCount} />
 
-      {/* ── BODY ────────────────────────────────────────── */}
       <div style={{
         flex: 1, display: 'flex', gap: 24,
         position: 'relative', zIndex: 2,
@@ -139,12 +133,10 @@ export default function CheckoutPage() {
           flex: 1, display: 'flex', gap: 24,
           height: '100%',
         }}>
-          {/* ── LEFT: Form fields ──────────────────────── */}
           <div style={{
             flex: 1, overflowY: 'auto', overflowX: 'hidden',
             paddingRight: 8,
           }}>
-            {/* Breadcrumb */}
             <div style={{
               display: 'flex', alignItems: 'center', gap: 8,
               color: 'rgba(255,255,255,0.4)', fontSize: 12, fontWeight: 600,
@@ -156,7 +148,6 @@ export default function CheckoutPage() {
               <span style={{ color: 'rgba(255,255,255,0.8)' }}>Checkout</span>
             </div>
 
-            {/* Delivery Address */}
             <GlassCard title="📍 Delivery Address" loaded={loaded} delay={0.5}>
               <div style={grid2}>
                 <FormField label="Full Name *" error={errors.name}>
@@ -188,7 +179,6 @@ export default function CheckoutPage() {
               </FormField>
             </GlassCard>
 
-            {/* Payment */}
             <GlassCard title="💳 Payment Method" loaded={loaded} delay={0.65}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: payment === 'card' ? 16 : 0 }}>
                 {PAYMENT_METHODS.map(m => (
@@ -235,7 +225,6 @@ export default function CheckoutPage() {
             </GlassCard>
           </div>
 
-          {/* ── RIGHT: Order Summary ───────────────────── */}
           <div style={{
             width: 320, flexShrink: 0,
             animation: loaded ? 'coSlideLeft 0.5s 0.6s ease-out both' : 'none',
@@ -254,7 +243,6 @@ export default function CheckoutPage() {
                 textShadow: '0 1px 3px rgba(0,0,0,0.3)',
               }}>ORDER REVIEW</h2>
 
-              {/* Item list */}
               <div style={{
                 display: 'flex', flexDirection: 'column', gap: 10,
                 marginBottom: 16, maxHeight: 200, overflowY: 'auto',
@@ -288,19 +276,15 @@ export default function CheckoutPage() {
                 ))}
               </div>
 
-              {/* Divider */}
               <div style={{ height: 1, background: 'rgba(255,255,255,0.1)', margin: '14px 0', borderRadius: 1 }} />
 
-              {/* Summary rows */}
               <SRow label="Subtotal" value={`₹${cartTotal.toFixed(2)}`} />
               <SRow label="Delivery" value={delivery === 0 ? 'FREE' : `₹${delivery.toFixed(2)}`}
                 vc={delivery === 0 ? '#4CAF50' : undefined} />
               {discount > 0 && <SRow label="Discount (5%)" value={`-₹${discount}`} vc="#FF6B6B" />}
 
-              {/* Divider */}
               <div style={{ height: 1, background: 'rgba(255,255,255,0.1)', margin: '14px 0', borderRadius: 1 }} />
 
-              {/* Total */}
               <div style={{
                 display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                 marginBottom: 20,
@@ -317,7 +301,6 @@ export default function CheckoutPage() {
                 </div>
               </div>
 
-              {/* Place Order button */}
               <button type="submit" disabled={loading} style={{
                 ...goldBtn,
                 width: '100%',
@@ -326,7 +309,6 @@ export default function CheckoutPage() {
                 {loading ? 'Placing Order…' : 'PLACE ORDER →'}
               </button>
 
-              {/* Trust badges */}
               <div style={{
                 display: 'flex', justifyContent: 'center', gap: 16, marginTop: 16,
                 fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.45)',
@@ -351,8 +333,6 @@ export default function CheckoutPage() {
   );
 }
 
-/* ══════════ SUB-COMPONENTS ══════════════════════════════ */
-
 function HeaderBar({ cartCount }) {
   return (
     <div style={{
@@ -362,7 +342,6 @@ function HeaderBar({ cartCount }) {
       minHeight: 70,
       animation: 'coSlideDown 0.5s 0.3s ease-out both',
     }}>
-      {/* Cart icon – top right */}
       <Link to="/cart" style={{
         position: 'absolute', right: 24, top: 12,
         display: 'flex', alignItems: 'center', gap: 10,
@@ -395,7 +374,6 @@ function HeaderBar({ cartCount }) {
         </span>
       </Link>
 
-      {/* Centre logo */}
       <img
         src="/img/subway surfers assets/logo.png" alt="Logo"
         style={{
@@ -473,7 +451,6 @@ function SRow({ label, value, vc }) {
   );
 }
 
-/* ── Shared styles ─────────────────────────────────────── */
 const navItem = {
   display: 'flex', flexDirection: 'column', alignItems: 'center',
   textDecoration: 'none', color: 'rgba(255,255,255,0.5)', gap: 4,
@@ -508,7 +485,6 @@ const goldBtn = {
 
 const grid2 = { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 };
 
-/* ── Animation CSS ─────────────────────────────────────── */
 const animCSS = `
   @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap');
 
@@ -533,13 +509,11 @@ const animCSS = `
     100% { opacity: 1; transform: translateX(0); }
   }
 
-  /* Input focus glow */
   input:focus, textarea:focus {
     border-color: rgba(255, 215, 0, 0.5) !important;
     box-shadow: 0 0 8px rgba(255, 215, 0, 0.15) !important;
   }
 
-  /* Scrollbar */
   ::-webkit-scrollbar { width: 5px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }

@@ -1,4 +1,3 @@
-// ─── Product catalogue ────────────────────────────────
 export const CATEGORIES = [
   { id: 'fruits', label: 'Fruits', emoji: '🍎', color: '#e05252' },
   { id: 'vegetables', label: 'Vegetables', emoji: '🥦', color: '#52a869' },
@@ -9,7 +8,6 @@ export const CATEGORIES = [
 ];
 
 export const PRODUCTS = [
-  // Fruits
   {
     id: 1, name: 'Fresh Red Apples', category: 'fruits', price: 70, originalPrice: 100, rating: 4.7, reviews: 128, emoji: '🍎', image: '/img/product_apples.png', unit: 'per kg', inStock: true, featured: true, badge: 'Sale',
     description: 'Crisp and sweet red apples sourced from local orchards. Perfect for snacking or baking.'
@@ -35,7 +33,6 @@ export const PRODUCTS = [
     description: 'Alphonso mangoes — intensely sweet with a velvety texture.'
   },
 
-  // Vegetables
   {
     id: 7, name: 'Fresh Broccoli', category: 'vegetables', price: 150, originalPrice: null, rating: 4.5, reviews: 77, emoji: '🥦', image: '/img/product_broccoli.png', unit: 'per head', inStock: true, featured: false, badge: 'Organic',
     description: 'Tender organic broccoli florets, packed with vitamins K, C, and antioxidants.'
@@ -61,7 +58,6 @@ export const PRODUCTS = [
     description: 'Tender organic baby spinach leaves, pre-washed and ready to use.'
   },
 
-  // Dairy
   {
     id: 13, name: 'Whole Milk', category: 'dairy', price: 50, originalPrice: null, rating: 4.6, reviews: 167, emoji: '🥛', image: '/img/product_milk.png', unit: '2L carton', inStock: true, featured: true, badge: null,
     description: 'Fresh whole milk from grass-fed cows. Creamy and nutritious for the whole family.'
@@ -87,7 +83,6 @@ export const PRODUCTS = [
     description: 'Rich heavy whipping cream for desserts, sauces, and coffee.'
   },
 
-  // Bakery
   {
     id: 19, name: 'Sourdough Bread', category: 'bakery', price: 70, originalPrice: null, rating: 4.8, reviews: 189, emoji: '🍞', image: '/img/product_sourdough.png', unit: '800g loaf', inStock: true, featured: true, badge: 'Artisan',
     description: 'Authentic sourdough with a chewy crust and tangy crumb, baked fresh daily.'
@@ -105,7 +100,6 @@ export const PRODUCTS = [
     description: 'Decadent dark chocolate layer cake with ganache frosting.'
   },
 
-  // Beverages
   {
     id: 23, name: 'Orange Juice', category: 'beverages', price: 60, originalPrice: null, rating: 4.6, reviews: 144, emoji: '🍊', image: '/img/product_oranges.png', unit: '1L carton', inStock: true, featured: true, badge: null,
     description: 'Freshly squeezed orange juice with no added sugar or preservatives.'
@@ -123,7 +117,6 @@ export const PRODUCTS = [
     description: 'Smooth, low-acid cold brew coffee concentrate. Rich and intensely flavored.'
   },
 
-  // Snacks
   {
     id: 27, name: 'Mixed Nuts', category: 'snacks', price: 100, originalPrice: 120, rating: 4.8, reviews: 201, emoji: '🥜', image: '/img/product_butter.png', unit: '500g pack', inStock: true, featured: true, badge: 'Sale',
     description: 'Premium roasted mix of cashews, almonds, and walnuts. Lightly salted.'

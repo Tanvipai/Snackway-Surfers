@@ -19,7 +19,6 @@ export default function OrderConfirmationPage() {
     }}>
       <div style={{ maxWidth: 520, width: '100%', animation: visible ? 'slideUp 0.45s ease' : 'none' }}>
 
-        {/* Check */}
         <div style={{
           width: 80, height: 80, borderRadius: '50%', background: 'var(--charcoal)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -33,7 +32,6 @@ export default function OrderConfirmationPage() {
           Thank you for shopping with Easy Groceries. Your order is being prepared.
         </p>
 
-        {/* Order info */}
         <div style={{ background: 'var(--white)', border: '1px solid var(--border)', borderRadius: 14, padding: '26px 28px', marginBottom: 16 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 22 }}>
             <div>
@@ -46,7 +44,6 @@ export default function OrderConfirmationPage() {
             </div>
           </div>
 
-          {/* Progress */}
           <div style={{ position: 'relative', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div style={{ position: 'absolute', top: 14, left: '12%', right: '12%', height: 2, background: 'var(--border)' }}>
               <div style={{ width: '33%', height: '100%', background: 'var(--charcoal)' }} />
@@ -65,7 +62,6 @@ export default function OrderConfirmationPage() {
           </div>
         </div>
 
-        {/* Delivery ETA */}
         <div style={{ background: 'var(--amber-pale)', border: '1px solid rgba(200,130,26,0.2)', borderRadius: 10, padding: '16px 20px', display: 'flex', alignItems: 'center', gap: 14, marginBottom: 28 }}>
           <span style={{ fontSize: 28 }}>🚚</span>
           <div>
