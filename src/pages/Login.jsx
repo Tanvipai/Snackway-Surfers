@@ -301,9 +301,9 @@ export default function Login() {
     }, 1900);
   }
 
-  function handleLogin() {
+  async function handleLogin() {
     if (!lUser || !lPass) { setLErr("Please fill in all fields."); shk(setLShake); return; }
-    const result = login(lUser.trim(), lPass);
+    const result = await login(lUser.trim(), lPass);
     if (result.ok) {
       setLErr("");
       openShutter();
@@ -317,15 +317,15 @@ export default function Login() {
     setSErr(""); setSOk("");
     if (!sUser || !sPass || !sPass2) { setSErr("Fill in all required fields."); shk(setSShake); return; }
     if (sPass !== sPass2) { setSErr("Passwords do not match."); shk(setSShake); return; }
-    if (sPass.length < 4) { setSErr("Password too short (min 4)."); shk(setSShake); return; }
+    if (sPass.length < 6) { setSErr("Password too short (min 6)."); shk(setSShake); return; }
     setPendingUser({ username: sUser.trim(), email: sEmail, password: sPass });
     setSOk("Almost there! Pick your character ✨");
     setTimeout(() => setShowChars(true), 700);
   }
 
-  function handleConfirmChar() {
+  async function handleConfirmChar() {
     if (!selectedChar || !pendingUser) return;
-    const result = signup(pendingUser.username, pendingUser.email, pendingUser.password, selectedChar);
+    const result = await signup(pendingUser.username, pendingUser.email, pendingUser.password, selectedChar);
     if (!result.ok) {
       setSErr(result.error || "Could not create account.");
       setShowChars(false);

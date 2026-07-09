@@ -10,13 +10,6 @@ const CHARACTERS = [
   { id: "fresh", img: "/img/login/fresh.png", name: "Fresh" },
 ];
 
-function getUsers() {
-  try { return JSON.parse(localStorage.getItem("eg_users") || "{}"); } catch { return {}; }
-}
-function saveUsers(data) {
-  localStorage.setItem("eg_users", JSON.stringify(data));
-}
-
 const CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@600;700;800&display=swap');
 
@@ -235,10 +228,11 @@ export default function ProfilePage() {
   useEffect(() => { injectCSS(); }, []);
 
   const navigate = useNavigate();
-  const { user, logout, setUser } = useAuth();
+  const { user, logout, changeUsername, changePassword } = useAuth();
 
   const username = user?.username || "Guest";
   const charId = user?.charId || "jake";
+  const email = user?.email || null;
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [modal, setModal] = useState(null);
@@ -247,8 +241,6 @@ export default function ProfilePage() {
   const [msg, setMsg] = useState({ text: "", ok: false });
 
   const charData = CHARACTERS.find(c => c.id === charId);
-  const [userRec] = useState(() => getUsers()[username?.toLowerCase()] || {});
-  const email = userRec.email || null;
 
   function onBack() {
     navigate('/home');
@@ -259,12 +251,6 @@ export default function ProfilePage() {
     navigate('/login');
   }
 
-  function onUsernameChange(newU) {
-    const updatedUser = { ...user, username: newU };
-    setUser(updatedUser);
-    localStorage.setItem('eg_current_user', JSON.stringify(updatedUser));
-  }
-
   function openModal(type) {
     setModal(type); setMenuOpen(false);
     setInputA(""); setInputB(""); setMsg({ text: "", ok: false });
@@ -273,31 +259,23 @@ export default function ProfilePage() {
     setModal(null); setInputA(""); setInputB(""); setMsg({ text: "", ok: false });
   }
 
-  function handleSaveUsername() {
+  async function handleSaveUsername() {
     const newU = inputA.trim();
     if (!newU) { setMsg({ text: "Enter a new username.", ok: false }); return; }
     if (newU.toLowerCase() === username.toLowerCase()) { setMsg({ text: "Same as current username.", ok: false }); return; }
-    const all = getUsers();
-    if (all[newU.toLowerCase()]) { setMsg({ text: "Username already taken.", ok: false }); return; }
-    const rec = all[username.toLowerCase()];
-    delete all[username.toLowerCase()];
-    all[newU.toLowerCase()] = rec;
-    saveUsers(all);
-    onUsernameChange(newU);
+    if (!inputB) { setMsg({ text: "Enter your current password.", ok: false }); return; }
+    const result = await changeUsername(newU, inputB);
+    if (!result.ok) { setMsg({ text: result.error || "Could not update username.", ok: false }); return; }
     setMsg({ text: "Username updated!", ok: true });
     setTimeout(() => { closeModal(); onLogout(); }, 1500);
   }
 
-  function handleSavePassword() {
+  async function handleSavePassword() {
     if (!inputA) { setMsg({ text: "Enter current password.", ok: false }); return; }
     if (!inputB) { setMsg({ text: "Enter new password.", ok: false }); return; }
-    if (inputB.length < 4) { setMsg({ text: "New password too short (min 4).", ok: false }); return; }
-    const all = getUsers();
-    const rec = all[username?.toLowerCase()];
-    if (!rec || rec.password !== inputA) { setMsg({ text: "Current password incorrect.", ok: false }); return; }
-    rec.password = inputB;
-    all[username.toLowerCase()] = rec;
-    saveUsers(all);
+    if (inputB.length < 6) { setMsg({ text: "New password too short (min 6).", ok: false }); return; }
+    const result = await changePassword(inputA, inputB);
+    if (!result.ok) { setMsg({ text: result.error || "Could not update password.", ok: false }); return; }
     setMsg({ text: "Password updated!", ok: true });
     setTimeout(() => closeModal(), 1500);
   }
@@ -372,9 +350,14 @@ export default function ProfilePage() {
             </div>
 
             {modal === "username" ? (
-              <input className="pp-modal-input" type="text"
-                placeholder="New username" value={inputA}
-                onChange={e => setInputA(e.target.value)} autoFocus />
+              <>
+                <input className="pp-modal-input" type="text"
+                  placeholder="New username" value={inputA}
+                  onChange={e => setInputA(e.target.value)} autoFocus />
+                <input className="pp-modal-input" type="password"
+                  placeholder="Current password" value={inputB}
+                  onChange={e => setInputB(e.target.value)} />
+              </>
             ) : (
               <>
                 <input className="pp-modal-input" type="password"
